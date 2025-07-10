@@ -4,16 +4,17 @@ import { Typewriter } from './components/Typewriter'
 import { Experience } from './components/Experience'
 import { ProjectsGrid } from './components/ProjectCarousel'
 import { InteractiveSkills } from './components/InteractiveSkills'
+import { Linkedin, Github, Instagram, Mail } from 'lucide-react'
 
 function App() {
 
   const skills = [
-    "Languages: Python, JavaScript, TypeScript, Java, C++, C, SQL, HTML, CSS",
-    "Web Frameworks: React, Next.js, Node.js, Express.js, Flask, Django, FastAPI",
-    "AI/ML/DL: PyTorch, TensorFlow, Keras, Scikit-learn, Hugging Face Transformers, OpenCV, NLTK, SpaCy",
-    "Cloud: AWS (EC2, S3, Lambda, DynamoDB, SQS, SNS), Azure, Google Cloud Platform",
-    "Databases: PostgreSQL, MySQL, MongoDB, Redis",
-    "Tools & Technologies: Docker, Kubernetes, Git, GitHub, CI/CD, REST APIs, GraphQL, Kafka, RabbitMQ, Linux, Apache Spark, Hadoop",
+    "Languages: Python, JavaScript, TypeScript, C++, SQL, HTML, CSS",
+    "Web Frameworks: React, Next.js, Node.js, bFastAPI",
+    "AI/ML/DL: PyTorch, TensorFlow, Scikit-learn, Hugging Face Transformers, OpenCV",
+    "Cloud: AWS (EC2, S3, Lambda, DynamoDB), Azure, Google Cloud Platform",
+    "Databases: PostgreSQL, MySQL",
+    "Tools & Technologies: Docker, Git, GitHub, CI/CD, REST APIs, GraphQL",
     "Other: Agile Methodologies, Data Structures & Algorithms, Object-Oriented Programming, Microservices, Serverless Architecture"
   ];
 
@@ -82,6 +83,50 @@ function App() {
             <div className="text-gray-900 dark:text-white mb-1 md:text-right">GPA 3.84<span className='text-base font-normal'>/4.00</span></div>
           </div>
         </div>
+      </div>
+
+      {/* Contact Section */}
+      <div className="flex flex-col items-center justify-center py-12 px-4 relative z-10">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">Get In Touch</h2>
+        <div className="flex items-center space-x-6">
+          <a
+            href="https://www.linkedin.com/in/yatharth-bajaj/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </a>
+          <a
+            href="https://github.com/Yatha04"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
+            aria-label="GitHub"
+          >
+            <Github className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </a>
+          <a
+            href="https://instagram.com/yatharth.bajaj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
+            aria-label="Instagram"
+          >
+            <Instagram className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </a>
+          <a
+            href="mailto:bajajyh@mail.uc.edu"
+            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
+            aria-label="Email"
+          >
+            <Mail className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </a>
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 mt-6 text-center">
+          Feel free to reach out and connect!
+        </p>
       </div>
     </DarkModeProvider>
   )
