@@ -3,7 +3,7 @@ import beaver from './assets/beaver.svg'
 import { Button } from './components/ui/button'
 import { hcWithType } from 'server/dist/client'
 import { DarkModeProvider } from './context/DarkModeContext'
-import { DarkModeToggle } from './components/DarkModeToggle'
+import { Navbar } from './components/Navbar'
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
 
@@ -30,7 +30,6 @@ function App() {
 
   return (
     <DarkModeProvider>
-      <DarkModeToggle />
       <div className="max-w-xl mx-auto flex flex-col gap-6 items-center justify-center min-h-screen">
         <a href="https://github.com/stevedylandev/bhvr" target="_blank">
           <img
@@ -66,6 +65,7 @@ function App() {
             </pre>
           )}
       </div>
+      <Navbar />
     </DarkModeProvider>
   )
 }
