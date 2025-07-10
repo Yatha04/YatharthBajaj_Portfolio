@@ -22,19 +22,19 @@ function App() {
       <Navbar />
       
       {/* Home Section */}
-      <div className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
+      <div id="home" className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
         <div className="text-center space-y-6">
           <h1 className="text-6xl font-bold text-gray-900 dark:text-white">
             Yatharth Bajaj
           </h1>
           <div className="text-2xl text-gray-700 dark:text-gray-300">
-            I love <Typewriter words={['travelling', 'AI', 'photography', 'coding', 'learning']} />
+            I love <Typewriter words={['travelling.', 'AI.', 'photography.', 'coding.', 'learning.']} />
           </div>
         </div>
       </div>
 
       {/* About Section */}
-      <div className="flex items-center justify-center py-8 px-4 relative z-10">
+      <div id="about" className="flex items-center justify-center py-8 px-4 relative z-10">
         <div className="text-center space-y-6">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             About Me
@@ -46,13 +46,13 @@ function App() {
       </div>
 
       {/* Experience Section */}
-      <Experience />
+      <div id="work"><Experience /></div>
 
       {/* Projects Section */}
-      <ProjectsGrid />
+      <div id="projects"><ProjectsGrid /></div>
 
       {/* Skills Section */}
-      <div className="flex flex-col items-center justify-center py-8 px-4 relative z-10">
+      <div id="menu" className="flex flex-col items-center justify-center py-8 px-4 relative z-10">
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
           My Skills
         </h2>
