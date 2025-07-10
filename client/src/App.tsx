@@ -40,7 +40,7 @@ function App() {
             About Me
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl">
-            I'm a passionate software developer and engineering student with experience in AI, automation, and healthcare technology.
+            I'm Yatharth Bajaj, a third-year Computer Science major at the University of Cincinnati with a strong interest in technology, travel, music, and photography. Recently, I've been exploring the world of artificial intelligence and am genuinely fascinated by its rapid progress—sometimes I think AI is advancing faster than my coffee can keep up. I'm eager to learn more, contribute to the field, and connect with others who share similar interests. Feel free to reach out!
           </p>
         </div>
       </div>
@@ -57,6 +57,31 @@ function App() {
           My Skills
         </h2>
         <InteractiveSkills skills={skills} />
+      </div>
+
+      {/* Education Section */}
+      <div id="education" className="flex flex-col items-center justify-center py-8 px-4 relative z-10">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">Education</h2>
+        <div className="w-full max-w-4xl bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-2xl shadow-lg px-10 py-8 flex flex-col md:flex-row items-center md:items-start gap-8 border border-gray-200 dark:border-gray-700">
+          <div className="flex-1 flex flex-col items-center md:items-start">
+            <div className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-1 text-center md:text-left">
+              Bachelor of Science – Computer Science
+            </div>
+            <div className="text-gray-700 dark:text-gray-300 mb-1 text-center md:text-left">
+              University of Cincinnati, Cincinnati, Ohio
+            </div>
+            <div className="text-gray-700 dark:text-gray-300 mb-1 text-center md:text-left">
+              University Honors Program | Dean’s List Honors
+            </div>
+            <div className="text-gray-700 dark:text-gray-300 mb-1 text-center md:text-left">
+              Int’l Outreach Award | UC Global Scholarship
+            </div>
+          </div>
+          <div className="flex flex-col items-center md:items-end min-w-[160px]">
+            <div className="text-gray-700 dark:text-gray-300 mb-1 text-lg md:text-right">Class of 2027</div>
+            <div className="text-gray-900 dark:text-white mb-1 md:text-right">GPA 3.84<span className='text-base font-normal'>/4.00</span></div>
+          </div>
+        </div>
       </div>
     </DarkModeProvider>
   )

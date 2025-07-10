@@ -1,7 +1,18 @@
 import { useState } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
 import { experiences } from '../data/experiences';
+import spritehealth from '../assets/spriteHealth.png';
+import jtekt from '../assets/jtekt.png';
+import ucincinnati from '../assets/uc.png';
+import swiggy from '../assets/swiggy.png';
 import { ExternalLink, MapPin, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+
+const logoMap: Record<string, string> = {
+  'spriteHealth.png': spritehealth,
+  'jtekt.png': jtekt,
+  'uc.png': ucincinnati,
+  'swiggy.png': swiggy
+};
 
 export const Experience = () => {
   const { isDarkMode } = useDarkMode();
@@ -84,14 +95,22 @@ export const Experience = () => {
                 } backdrop-blur-sm hover:backdrop-blur-md`}>
                 
                   <div className="flex items-start gap-2">
-                    {/* Company Logo Placeholder */}
-                    <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white font-bold text-xs ${
-                      experience.isHighlighted
-                        ? 'bg-gradient-to-br from-blue-500 to-purple-600'
-                        : 'bg-gradient-to-br from-gray-500 to-gray-600'
-                    }`}>
-                      {experience.company.split(' ').map(word => word[0]).join('').slice(0, 2)}
-                    </div>
+                    {/* Company Logo or Placeholder */}
+                    {experience.logo && logoMap[experience.logo] ? (
+                      <img
+                        src={logoMap[experience.logo]}
+                        alt={experience.company + ' logo'}
+                        className="w-10 h-10 rounded-md object-contain bg-white p-1 border border-gray-200 dark:border-gray-700"
+                      />
+                    ) : (
+                      <div className={`w-10 h-10 rounded-md flex items-center justify-center text-white font-bold text-xs ${
+                        experience.isHighlighted
+                          ? 'bg-gradient-to-br from-blue-500 to-purple-600'
+                          : 'bg-gradient-to-br from-gray-500 to-gray-600'
+                      }`}>
+                        {experience.company.split(' ').map(word => word[0]).join('').slice(0, 2)}
+                      </div>
+                    )}
                     
                     <div className="flex-1">
                       {/* Header */}

@@ -29,7 +29,8 @@ export const experiences: Experience[] = [
     ],
     tags: ['Python', 'Google Cloud', 'RPA', 'Automation', 'Healthcare Tech'],
     isHighlighted: false,
-    externalLink: 'https://spritehealth.com'
+    externalLink: 'https://spritehealth.com',
+    logo: 'spriteHealth.png'
   },
   {
     id: 'jtekt',
@@ -45,7 +46,8 @@ export const experiences: Experience[] = [
       'Set-up, debugged, and optimized electrical systems and manufacturing equipment for improved efficiency'
     ],
     tags: ['AI', 'Automation', 'Manufacturing', 'Controls Engineering', 'Prototyping'],
-    externalLink: 'https://jtekt.com'
+    externalLink: 'https://jtekt.com',
+    logo: 'jtekt.png'
   },
   {
     id: 'uc-cincinnati',
@@ -60,7 +62,8 @@ export const experiences: Experience[] = [
       'Conducted 100+ 1-1 tutoring sessions in Math, Physics, Chemistry, CS, Engineering Design'
     ],
     tags: ['Student Services', 'Tutoring', 'Administration', 'Education'],
-    externalLink: 'https://uc.edu'
+    externalLink: 'https://uc.edu',
+    logo: 'uc.png'
   },
   {
     id: 'swiggy-bundl',
@@ -75,7 +78,8 @@ export const experiences: Experience[] = [
       'Gained exposure to Cloud Computing and Docker Engine, broadening insights into modern practice'
     ],
     tags: ['UI/UX', 'Figma', 'JavaScript', 'HTML/CSS', 'Cloud Computing', 'Docker'],
-    externalLink: 'https://swiggy.com'
+    externalLink: 'https://swiggy.com',
+    logo: 'swiggy.png'
   }
 ];
 
