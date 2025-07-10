@@ -1,5 +1,17 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 import type { ApiResponse } from "shared/dist";
+
+type VercelRequest = {
+  method?: string;
+  url?: string;
+};
+
+type VercelResponse = {
+  setHeader: (name: string, value: string) => void;
+  status: (code: number) => VercelResponse;
+  json: (data: any) => void;
+  text: (data: string) => void;
+  end: () => void;
+};
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   // Handle CORS

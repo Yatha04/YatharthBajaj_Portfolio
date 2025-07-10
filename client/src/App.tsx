@@ -28,7 +28,7 @@ function App() {
             Yatharth Bajaj
           </h1>
           <div className="text-2xl text-gray-700 dark:text-gray-300">
-            I love <Typewriter words={['travelling.', 'AI.', 'photography.', 'coding.', 'learning.']} />
+            I love <Typewriter words={['travelling.', 'AI.', 'photography.', 'coding.', 'learning.', 'music.']} />
           </div>
         </div>
       </div>
