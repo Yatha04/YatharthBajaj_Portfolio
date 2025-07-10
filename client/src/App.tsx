@@ -1,9 +1,8 @@
 import { DarkModeProvider } from './context/DarkModeContext'
 import { Navbar } from './components/Navbar'
 import { Typewriter } from './components/Typewriter'
-import { AnimatedBackground } from './components/AnimatedBackground'
 import { Experience } from './components/Experience'
-import { ProjectCarousel } from './components/ProjectCarousel'
+import { ProjectsGrid } from './components/ProjectCarousel'
 import { InteractiveSkills } from './components/InteractiveSkills'
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
 
   return (
     <DarkModeProvider>
-      <AnimatedBackground />
       <Navbar />
       
       {/* Home Section */}
@@ -36,7 +34,7 @@ function App() {
       </div>
 
       {/* About Section */}
-      <div className="min-h-screen flex items-center justify-center px-4 relative z-10">
+      <div className="flex items-center justify-center py-8 px-4 relative z-10">
         <div className="text-center space-y-6">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             About Me
@@ -51,10 +49,10 @@ function App() {
       <Experience />
 
       {/* Projects Section */}
-      <ProjectCarousel />
+      <ProjectsGrid />
 
       {/* Skills Section */}
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
+      <div className="flex flex-col items-center justify-center py-8 px-4 relative z-10">
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
           My Skills
         </h2>

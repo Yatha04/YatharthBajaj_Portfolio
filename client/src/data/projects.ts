@@ -1,34 +1,65 @@
 export interface Project {
   id: string;
   title: string;
-  description: string;
+  description: string[];
   tech: string[];
-  image?: string;
   github?: string;
-  demo?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: 'ai-portfolio',
-    title: 'AI Portfolio Website',
-    description: 'A personal portfolio built with React, featuring a modern timeline and interactive carousel.',
+    id: 'rash-driving-detection',
+    title: 'Rash Driving Detection',
+    description: [
+      'Developed a computer-vision pipeline using OpenCV & YOLOv5 to detect rash driving behaviors in traffic',
+      'Implemented automated alerting and dashboard visualization for incident tracking and trend monitoring',
+    ],
+    tech: ['OpenCV', 'YOLOv5', 'Python', 'Dashboard'],
+  },
+  {
+    id: 'robotic-arm',
+    title: 'Robotic Arm',
+    description: [
+      'Built a robotic arm with actuators, motors, and a camera for object recognition and manipulation',
+      'Programmed the system to perform tasks like picking objects, playing games and more',
+    ],
+    tech: ['Robotics', 'Python', 'Computer Vision', 'Actuators'],
+  },
+  {
+    id: 'mini-facebook',
+    title: 'Mini-Facebook',
+    description: [
+      'Built a web app with user authentication, profile management, post interaction, and real-time chat',
+      'Ensured security by using HTTPS, Hashing, Input validation, output sanitization and more',
+    ],
+    tech: ['React', 'Node.js', 'WebSockets', 'Security'],
+  },
+  {
+    id: 'precision-mma',
+    title: 'Precision_MMA Website',
+    description: [
+      'A website for a martial arts academy, available on GitHub',
+    ],
     tech: ['React', 'TypeScript', 'TailwindCSS'],
-    github: 'https://github.com/yourusername/ai-portfolio',
-    demo: 'https://yourportfolio.com',
+    github: 'https://github.com/yourusername/Precision_MMA',
   },
   {
-    id: 'chatbot',
-    title: 'Customer Support Chatbot',
-    description: 'An AI-powered chatbot for automating customer support queries.',
-    tech: ['Python', 'FastAPI', 'OpenAI'],
-    github: 'https://github.com/yourusername/chatbot',
+    id: 'application-tracker',
+    title: 'ApplicationTracker',
+    description: [
+      'A Python tool to automatically track job application emails from your Gmail inbox and extract structured information using Large Language Models (LLMs).',
+      'Connects to your Gmail, fetches job application emails, and uses an LLM to extract key details like company, position, and date for easy tracking.',
+      'Automates email processing with secure OAuth2 integration and smart duplicate filtering.'
+    ],
+    tech: ['Python', 'Gmail API', 'LLM', 'OAuth2'],
+    github: 'https://github.com/Yatha04/ApplicationTracker',
   },
   {
-    id: 'image-analyzer',
-    title: 'Image Analyzer',
-    description: 'A web app for analyzing and tagging images using machine learning.',
-    tech: ['Next.js', 'TensorFlow.js', 'Vercel'],
-    demo: 'https://imageanalyzer.com',
+    id: 'cooking-something-cool',
+    title: 'Cooking Something Cool',
+    description: [
+      'Coming soon'
+    ],
+    tech: [],
   },
 ]; 
