@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
 import { Button } from './ui/button';
-import { Moon, Sun, Home, User, Settings, Info } from 'lucide-react';
+import { Moon, Sun, Home, User, Settings, Info, Briefcase } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -12,6 +12,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" /> },
   { id: 'about', label: 'About', icon: <User className="w-4 h-4" /> },
+  { id: 'experience', label: 'Experience', icon: <Briefcase className="w-4 h-4" /> },
   { id: 'settings', label: 'Settings', icon: <Settings className="w-4 h-4" /> },
   { id: 'info', label: 'Info', icon: <Info className="w-4 h-4" /> },
 ];
@@ -32,6 +33,8 @@ export const Navbar = () => {
       } else if (scrollPosition < 600) {
         setActiveSection('about');
       } else if (scrollPosition < 900) {
+        setActiveSection('experience');
+      } else if (scrollPosition < 1200) {
         setActiveSection('settings');
       } else {
         setActiveSection('info');
@@ -48,8 +51,9 @@ export const Navbar = () => {
     const sectionPositions: Record<string, number> = {
       home: 0,
       about: 300,
-      settings: 600,
-      info: 900,
+      experience: 600,
+      settings: 900,
+      info: 1200,
     };
     
     window.scrollTo({

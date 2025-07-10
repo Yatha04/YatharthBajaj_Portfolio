@@ -1,71 +1,65 @@
-import { useState } from 'react'
-import beaver from './assets/beaver.svg'
-import { Button } from './components/ui/button'
-import { hcWithType } from 'server/dist/client'
 import { DarkModeProvider } from './context/DarkModeContext'
 import { Navbar } from './components/Navbar'
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
-
-const client = hcWithType(SERVER_URL);
-
-type ResponseType = Awaited<ReturnType<typeof client.hello.$get>>;
+import { Typewriter } from './components/Typewriter'
+import { AnimatedBackground } from './components/AnimatedBackground'
+import { Experience } from './components/Experience'
+import { ProjectCarousel } from './components/ProjectCarousel'
+import { InteractiveSkills } from './components/InteractiveSkills'
 
 function App() {
-  const [data, setData] = useState<Awaited<ReturnType<ResponseType["json"]>> | undefined>()
 
-  async function sendRequest() {
-    try {
-      const res = await client.hello.$get()
-      if (!res.ok) {
-        console.log("Error fetching data")
-        return
-      }
-      const data = await res.json()
-      setData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const skills = [
+    "Languages: Python, JavaScript, TypeScript, Java, C++, C, SQL, HTML, CSS",
+    "Web Frameworks: React, Next.js, Node.js, Express.js, Flask, Django, FastAPI",
+    "AI/ML/DL: PyTorch, TensorFlow, Keras, Scikit-learn, Hugging Face Transformers, OpenCV, NLTK, SpaCy",
+    "Cloud: AWS (EC2, S3, Lambda, DynamoDB, SQS, SNS), Azure, Google Cloud Platform",
+    "Databases: PostgreSQL, MySQL, MongoDB, Redis",
+    "Tools & Technologies: Docker, Kubernetes, Git, GitHub, CI/CD, REST APIs, GraphQL, Kafka, RabbitMQ, Linux, Apache Spark, Hadoop",
+    "Other: Agile Methodologies, Data Structures & Algorithms, Object-Oriented Programming, Microservices, Serverless Architecture"
+  ];
 
   return (
     <DarkModeProvider>
-      <div className="max-w-xl mx-auto flex flex-col gap-6 items-center justify-center min-h-screen">
-        <a href="https://github.com/stevedylandev/bhvr" target="_blank">
-          <img
-            src={beaver}
-            className="w-16 h-16 cursor-pointer"
-            alt="beaver logo"
-          />
-        </a>
-        <h1 className="text-5xl font-black">bhvr</h1>
-        <h2 className="text-2xl font-bold">Bun + Hono + Vite + React</h2>
-        <p>lets do this</p>
-        <div className='flex items-center gap-4'>
-          <Button
-            onClick={sendRequest}
-          >
-            Call API
-          </Button>
-          <Button
-            variant='secondary'
-            asChild
-          >
-            <a target='_blank' href="https://bhvr.dev">
-            Docs
-            </a>
-          </Button>
-        </div>
-          {data && (
-            <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
-              <code>
-              Message: {data.message} <br />
-              Success: {data.success.toString()}
-              </code>
-            </pre>
-          )}
-      </div>
+      <AnimatedBackground />
       <Navbar />
+      
+      {/* Home Section */}
+      <div className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
+        <div className="text-center space-y-6">
+          <h1 className="text-6xl font-bold text-gray-900 dark:text-white">
+            Yatharth Bajaj
+          </h1>
+          <div className="text-2xl text-gray-700 dark:text-gray-300">
+            I love <Typewriter words={['travelling', 'AI', 'photography', 'coding', 'learning']} />
+          </div>
+        </div>
+      </div>
+
+      {/* About Section */}
+      <div className="min-h-screen flex items-center justify-center px-4 relative z-10">
+        <div className="text-center space-y-6">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+            About Me
+          </h2>
+          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl">
+            I'm a passionate software developer and engineering student with experience in AI, automation, and healthcare technology.
+          </p>
+        </div>
+      </div>
+
+      {/* Experience Section */}
+      <Experience />
+
+      {/* Projects Section */}
+      <ProjectCarousel />
+
+      {/* Skills Section */}
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+          My Skills
+        </h2>
+        <InteractiveSkills skills={skills} />
+      </div>
     </DarkModeProvider>
   )
 }
