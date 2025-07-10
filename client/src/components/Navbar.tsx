@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
 import { Button } from './ui/button';
-import { Moon, Sun, Home, FileText, Briefcase, BookOpen, Code2, GraduationCap, Command } from 'lucide-react';
+import { Moon, Sun, Home, FileText, Briefcase, Code2, GraduationCap, Command } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -13,39 +13,54 @@ const navItems: NavItem[] = [
   { id: 'home', label: 'Home', icon: <Home className="w-5 h-5 mr-2" /> },
   { id: 'about', label: 'About', icon: <FileText className="w-5 h-5 mr-2" /> },
   { id: 'work', label: 'Work', icon: <Briefcase className="w-5 h-5 mr-2" /> },
-  // Blog hidden for now
   { id: 'projects', label: 'Projects', icon: <Code2 className="w-5 h-5 mr-2" /> },
   { id: 'menu', label: 'Skills', icon: <Command className="w-5 h-5 mr-2" /> },
   { id: 'education', label: 'Education', icon: <GraduationCap className="w-5 h-5 mr-2" /> },
-  
 ];
 
 export const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [activeSection, setActiveSection] = useState('home');
+  const [isUserClicking, setIsUserClicking] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Simple scrollspy logic - can be enhanced based on actual sections
-      const scrollPosition = window.scrollY + 100;
-      // Placeholder logic for demo
-      if (scrollPosition < 300) setActiveSection('home');
-      else if (scrollPosition < 600) setActiveSection('about');
-      else if (scrollPosition < 900) setActiveSection('work');
-      else if (scrollPosition < 1200) setActiveSection('blog');
-      else if (scrollPosition < 1500) setActiveSection('projects');
-      else if (scrollPosition < 1800) setActiveSection('education');
-      else setActiveSection('menu');
+      // Don't update active section if user just clicked a button
+      if (isUserClicking) return;
+      
+      const sections = ['home', 'about', 'work', 'projects', 'education', 'menu'];
+      const scrollPosition = window.scrollY + 200;
+      
+      // Find which section is currently in view
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isUserClicking]);
 
   const scrollToSection = (sectionId: string) => {
+    // Set user clicking flag to prevent scroll interference
+    setIsUserClicking(true);
+    
+    // Immediately set the active section when button is clicked
+    setActiveSection(sectionId);
+    
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    // Reset the flag after a delay to allow scroll detection to resume
+    setTimeout(() => {
+      setIsUserClicking(false);
+    }, 1000);
   };
 
   return (

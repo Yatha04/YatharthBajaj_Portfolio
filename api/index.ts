@@ -1,0 +1,28 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { ApiResponse } from "shared/dist";
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  // Handle CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method === 'GET') {
+    if (req.url?.includes('/api/hello')) {
+      const data: ApiResponse = {
+        message: "Hello BHVR!",
+        success: true,
+      };
+      return res.status(200).json(data);
+    }
+    
+    return res.status(200).text("Hello from API!");
+  }
+
+  return res.status(405).json({ error: 'Method not allowed' });
+} 

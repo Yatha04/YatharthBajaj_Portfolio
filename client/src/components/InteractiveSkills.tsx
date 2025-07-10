@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 import { 
   Code2Icon, ServerIcon, DatabaseIcon, CloudIcon, 
   CodeIcon, BrainCircuitIcon, LibraryIcon, 
-  PackageIcon, MonitorIcon, BarChart3Icon, LayoutIcon, 
+  PackageIcon, BarChart3Icon, LayoutIcon, 
   ApertureIcon, GaugeIcon, TerminalIcon, 
-  BoxIcon, CircuitBoardIcon, LucideIcon
+  BoxIcon, CircuitBoardIcon
 } from "lucide-react";
 
 // Map of category names to their corresponding icons
@@ -22,7 +22,6 @@ const categoryIcons: Record<string, React.ReactNode> = {
   "Big Data": <BarChart3Icon className="h-4 w-4" />,
   "Databases": <DatabaseIcon className="h-4 w-4" />,
   "Languages": <CodeIcon className="h-4 w-4" />,
-  // Default icon for any other categories
   "Other": <ApertureIcon className="h-4 w-4" />
 };
 
@@ -56,25 +55,23 @@ const getSkillIcon = (skill: string): React.ReactNode => {
     return <PackageIcon className="h-3.5 w-3.5" />;
   }
 
-  // Default
   return <GaugeIcon className="h-3.5 w-3.5" />;
 };
 
 interface SkillCategoryProps {
   name: string;
-  skills: readonly string[] | string[];
   icon?: React.ReactNode;
   isActive: boolean;
   onClick: () => void;
   count: number;
 }
 
-const SkillCategory: React.FC<SkillCategoryProps> = ({ name, skills, icon, isActive, onClick, count }) => {
+const SkillCategory: React.FC<SkillCategoryProps> = ({ name, icon, isActive, onClick, count }) => {
   return (
     <button 
       onClick={onClick}
       className={cn(
-        "text-xs px-3 py-1.5 rounded-full transition-all duration-300 font-medium flex items-center gap-1.5", // Reduced text size and padding
+        "text-xs px-3 py-1.5 rounded-full transition-all duration-300 font-medium flex items-center gap-1.5",
         isActive 
           ? "bg-primary text-primary-foreground shadow-md" 
           : "bg-muted hover:bg-muted/80"
@@ -85,7 +82,7 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ name, skills, icon, isAct
         <span>{name}</span>
       </div>
       <span className={cn(
-        "inline-flex items-center justify-center rounded-full text-xs w-4 h-4", // Smaller counter circle
+        "inline-flex items-center justify-center rounded-full text-xs w-4 h-4",
         isActive 
           ? "bg-primary-foreground text-primary"
           : "bg-background text-muted-foreground"
@@ -119,7 +116,6 @@ export const InteractiveSkills: React.FC<InteractiveSkillsProps> = ({ skills }) 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   
-  // Fixed type errors by explicitly defining the accumulator type and using the correct reduce pattern
   const categorizedSkills = skills.reduce<Record<string, string[]>>((acc, skill) => {
     const { category, skills } = extractCategory(skill);
     if (!acc[category]) {
@@ -133,14 +129,13 @@ export const InteractiveSkills: React.FC<InteractiveSkillsProps> = ({ skills }) 
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(selectedCategory === category ? null : category);
-    setSelectedSkill(null); // Reset selected skill when changing category
+    setSelectedSkill(null);
   };
 
   const handleSkillClick = (skill: string) => {
     setSelectedSkill(selectedSkill === skill ? null : skill);
   };
 
-  // Function to get all skills from all categories with proper typing
   const getAllSkills = (): string[] => {
     return Object.values(categorizedSkills).flatMap((categorySkills: string[]) => 
       categorySkills.flatMap((skillString: string) => 
@@ -149,7 +144,6 @@ export const InteractiveSkills: React.FC<InteractiveSkillsProps> = ({ skills }) 
     );
   };
 
-  // Function to get skills from a specific category with proper typing
   const getSkillsFromCategory = (category: string): string[] => {
     const categorySkills = categorizedSkills[category as keyof typeof categorizedSkills];
     return categorySkills?.flatMap((skillString: string) => 
@@ -165,7 +159,6 @@ export const InteractiveSkills: React.FC<InteractiveSkillsProps> = ({ skills }) 
         <SkillCategory
           key="all"
           name="All Skills"
-          skills={[]}
           icon={<ApertureIcon className="h-4 w-4" />}
           isActive={selectedCategory === null}
           onClick={() => setSelectedCategory(null)}
@@ -179,7 +172,6 @@ export const InteractiveSkills: React.FC<InteractiveSkillsProps> = ({ skills }) 
             isActive={selectedCategory === category}
             onClick={() => handleCategoryClick(category)}
             count={getSkillsFromCategory(category).length}
-            skills={[]} // Pass an empty array for skills as it's not used in SkillCategory component
           />
         ))}
       </div>
@@ -198,39 +190,31 @@ export const InteractiveSkills: React.FC<InteractiveSkillsProps> = ({ skills }) 
               <motion.div
                 key={`${skill}-${index}`}
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: selectedSkill === skill ? 1.05 : 1,
-                  y: 0 
-                }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ 
-                  delay: index * 0.03,
-                  duration: 0.2
-                }}
-                onClick={() => handleSkillClick(skill)}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2, delay: index * 0.02 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Badge 
-                  variant={selectedSkill === skill ? "default" : "secondary"} 
+                <Badge
+                  variant={selectedSkill === skill ? "default" : "secondary"}
                   className={cn(
-                    "py-1 px-2 text-xs transition-all cursor-pointer", // Reduced text size and padding
-                    "hover:bg-primary hover:text-primary-foreground",
-                    "flex items-center gap-1",
-                    selectedSkill === skill && "bg-primary/90 text-primary-foreground shadow"
+                    "cursor-pointer transition-all duration-200 text-xs px-2 py-1",
+                    selectedSkill === skill 
+                      ? "bg-primary text-primary-foreground shadow-md" 
+                      : "hover:bg-muted/80"
                   )}
+                  onClick={() => handleSkillClick(skill)}
                 >
-                  {getSkillIcon(skill)}
-                  {skill}
+                  <div className="flex items-center gap-1.5">
+                    <span className="flex-shrink-0">{getSkillIcon(skill)}</span>
+                    <span className="font-medium">{skill}</span>
+                  </div>
                 </Badge>
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
-        
-        {/* Skills count indicator */}
-        <div className="mt-4 text-center text-xs text-muted-foreground">
-          Showing {currentSkills.length} {selectedCategory ? `skills in ${selectedCategory}` : 'total skills'}
-        </div>
       </Card>
     </div>
   );

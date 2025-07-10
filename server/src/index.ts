@@ -19,4 +19,5 @@ export const app = new Hono()
 	return c.json(data, { status: 200 });
 });
 
+// Export for Vercel serverless
 export default app;
