@@ -47,9 +47,8 @@ export const projects: Project[] = [
     id: 'application-tracker',
     title: 'ApplicationTracker',
     description: [
-      'A Python tool to automatically track job application emails from your Gmail inbox and extract structured information using Large Language Models (LLMs).',
-      'Connects to your Gmail, fetches job application emails, and uses an LLM to extract key details like company, position, and date for easy tracking.',
-      'Automates email processing with secure OAuth2 integration and smart duplicate filtering.'
+      'A Python tool to automatically track job application emails from your Gmail inbox and extract structured information using Large Language Models (LLMs)',
+      'Connects to your Gmail, fetches job application emails, and uses an LLM to extract key details like company, position, and date for easy tracking',
     ],
     tech: ['Python', 'Gmail API', 'LLM', 'OAuth2'],
     github: 'https://github.com/Yatha04/ApplicationTracker',
