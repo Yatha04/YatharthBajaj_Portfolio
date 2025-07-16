@@ -19,7 +19,7 @@ export const experiences: Experience[] = [
     company: 'Sprite Health',
     role: 'Software Developer Co-Op',
     location: 'Texas',
-    locationType: 'On Site',
+    locationType: 'Remote',
     duration: 'May 2025 – Present',
     description: 'Working on healthcare technology solutions with focus on automation and data processing.',
     achievements: [
