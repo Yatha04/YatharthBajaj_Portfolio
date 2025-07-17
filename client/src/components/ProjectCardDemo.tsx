@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProjectCard } from './ProjectCard';
 
 // Sample project data that matches the SmartEssay card
