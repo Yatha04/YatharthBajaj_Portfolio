@@ -70,7 +70,7 @@ export const Navbar = () => {
   return (
     <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-2 p-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700">
+      <div className="hidden md:flex items-center gap-2 p-2 bg-white/5 dark:bg-gray-900/5 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 dark:border-gray-700/30 shadow-black/5">
         {navItems.map((item) => (
           <Button
             key={item.id}
@@ -84,7 +84,7 @@ export const Navbar = () => {
             <span className="text-sm font-medium">{item.label}</span>
           </Button>
         ))}
-        <div className="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1" />
+        <div className="w-px h-6 bg-gray-300/50 dark:bg-gray-600/50 mx-1" />
         <Button
           variant="ghost"
           size="sm"
@@ -119,7 +119,7 @@ export const Navbar = () => {
           variant="default"
           size="sm"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="rounded-full h-12 w-12 p-0 flex items-center justify-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-lg border border-gray-200 dark:border-gray-700"
+          className="rounded-full h-12 w-12 p-0 flex items-center justify-center bg-white/5 dark:bg-gray-900/5 backdrop-blur-xl shadow-2xl border border-white/20 dark:border-gray-700/30 shadow-black/5"
           aria-label="Toggle navigation menu"
         >
           {isMobileMenuOpen ? (
@@ -131,7 +131,7 @@ export const Navbar = () => {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 w-64 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-4">
+          <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 w-64 bg-white/8 dark:bg-gray-900/8 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/30 shadow-black/10 p-4">
             <div className="space-y-2">
               {navItems.map((item) => (
                 <Button
@@ -145,7 +145,7 @@ export const Navbar = () => {
                   <span className="text-sm font-medium ml-2">{item.label}</span>
                 </Button>
               ))}
-              <div className="w-full h-px bg-gray-300 dark:bg-gray-600 my-2" />
+              <div className="w-full h-px bg-gray-300/50 dark:bg-gray-600/50 my-2" />
               <Button
                 variant="ghost"
                 size="sm"
