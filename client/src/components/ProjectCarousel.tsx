@@ -25,7 +25,7 @@ export const ProjectsGrid = () => {
               <ProjectCard 
                 key={project.id}
                 project={project}
-                status={project.id === 'application-tracker' ? 'completed' : 'ongoing'}
+                status={project.id === 'rash-driving-detection' ? 'ongoing' : 'completed'}
               />
             )
           ))}

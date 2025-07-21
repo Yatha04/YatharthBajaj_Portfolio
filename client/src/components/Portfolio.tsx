@@ -31,7 +31,7 @@ export function Portfolio() {
             Yatharth Bajaj
           </h1>
           <div className="text-2xl text-gray-700 dark:text-gray-300">
-            I love <Typewriter words={['travelling.', 'AI.', 'photography.', 'coding.', 'learning.', 'music.']} />
+            I love <Typewriter words={['travelling.', 'AI.', 'photography.', 'coding.', 'learning.', 'music.', 'video games.', 'movies,']} />
           </div>
         </div>
       </div>
