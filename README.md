@@ -60,6 +60,3 @@ npm run build
 
 Visit my portfolio at: [yatha04.vercel.app]
 
----
-
-Built with ❤️ by Yatharth Bajaj
