@@ -4,6 +4,7 @@ export interface Project {
   description: string[];
   tech: string[];
   github?: string;
+  status: 'completed' | 'ongoing' | 'planned';
 }
 
 export const projects: Project[] = [
@@ -15,6 +16,7 @@ export const projects: Project[] = [
       'Implemented automated alerting and dashboard visualization for incident tracking and trend monitoring',
     ],
     tech: ['OpenCV', 'YOLOv5', 'Python', 'Dashboard'],
+    status: 'ongoing',
   },
   {
     id: 'Robotic Arm',
@@ -24,6 +26,7 @@ export const projects: Project[] = [
       'Programmed the system to perform tasks like picking objects, playing games and more',
     ],
     tech: ['Robotics', 'Python', 'Computer Vision', 'Actuators'],
+    status: 'completed',
   },
   {
     id: 'Mini-Facebook',
@@ -33,6 +36,7 @@ export const projects: Project[] = [
       'Ensured security by using HTTPS, Hashing, Input validation, output sanitization and more',
     ],
     tech: ['React', 'Node.js', 'WebSockets', 'Security'],
+    status: 'completed',
   },
   {
     id: 'Precision MMA Website',
@@ -42,6 +46,7 @@ export const projects: Project[] = [
     ],
     tech: ['React', 'TypeScript', 'TailwindCSS'],
     github: 'https://github.com/Yatha04/Precision_MMA',
+    status: 'completed',
   },
   {
     id: 'Job Application Tracker',
@@ -52,6 +57,7 @@ export const projects: Project[] = [
     ],
     tech: ['Python', 'Gmail API', 'LLM', 'OAuth2'],
     github: 'https://github.com/Yatha04/ApplicationTracker',
+    status: 'completed',
   },
   {
     id: 'cooking-something-cool',
@@ -60,5 +66,6 @@ export const projects: Project[] = [
       'Coming soon'
     ],
     tech: [],
+    status: 'planned',
   },
 ]; 
