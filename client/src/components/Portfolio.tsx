@@ -3,14 +3,9 @@ import { Typewriter } from './Typewriter'
 import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
-import { Button } from './ui/button'
-import { FileText, ArrowRight } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import FancyLink from './FancyLink'
 
 export function Portfolio() {
-  const navigate = useNavigate()
-
   const skills = [
     "Languages: Python, JavaScript, TypeScript, C++, SQL, HTML, CSS",
     "Web Frameworks: React, Next.js, Node.js, bFastAPI",
