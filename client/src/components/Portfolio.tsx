@@ -4,8 +4,9 @@ import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
 import { Button } from './ui/button'
-import { Linkedin, Github, Instagram, Mail, FileText, ArrowRight } from 'lucide-react'
+import { FileText, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import FancyLink from './FancyLink'
 
 export function Portfolio() {
   const navigate = useNavigate()
@@ -31,7 +32,7 @@ export function Portfolio() {
             Yatharth Bajaj
           </h1>
           <div className="text-2xl text-gray-700 dark:text-gray-300">
-            I love <Typewriter words={['travelling.', 'AI.', 'photography.', 'coding.', 'learning.', 'music.', 'video games.', 'movies,']} />
+            I love <Typewriter words={['travelling.', 'building.', 'photography.', 'learning.', 'music.', 'video games.', 'movies.']} />
           </div>
         </div>
       </div>
@@ -42,28 +43,55 @@ export function Portfolio() {
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             About Me
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            I'm Yatharth Bajaj, a third-year Computer Science major at the University of Cincinnati with a strong interest in technology, travel, music, and photography. Recently, I've been exploring the world of artificial intelligence and am genuinely fascinated by its rapid progress—sometimes I think AI is advancing faster than my coffee can keep up. I'm eager to learn more, contribute to the field, and connect with others who share similar interests. Feel free to reach out!
+          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+            Hi, I'm Yatharth. I'm studying Computer Science @University of Cincinnati.
+            <br />
+            Lately, I've been messing around, building projects trying to get into machine learning and AI. 
+
+            <br />
+            <br />
+            I'm currently helping build voice agents for construction companies and I'm also an analyst @Bearcat Ventures. Open to any opportunities!
+
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => window.open('/resume-viewer.html', '_blank')}
-              className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-md border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60"
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
+            <FancyLink
+              href="https://x.com/YatharthBajaj4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 dark:text-gray-300 text-lg"
             >
-              <FileText className="w-5 h-5" />
-              View Resume
-            </Button>
-            <Button 
-              variant="default" 
-              size="lg"
-              onClick={() => navigate('/explore')}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              X
+            </FancyLink>
+            <FancyLink 
+              href="https://www.linkedin.com/in/yatharth-bajaj/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 dark:text-gray-300 text-lg"
             >
-              Explore More
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+              LinkedIn
+            </FancyLink>
+            <FancyLink 
+              href="https://github.com/Yatha04" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 dark:text-gray-300 text-lg"
+            >
+              GitHub
+            </FancyLink>
+            <FancyLink 
+              href="https://www.instagram.com/yatha0408/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 dark:text-gray-300 text-lg"
+            >
+              Instagram
+            </FancyLink>
+            <FancyLink 
+              href="mailto:bajajyh@mail.uc.edu" 
+              className="text-gray-700 dark:text-gray-300 text-lg"
+            >
+              Email
+            </FancyLink>
           </div>
         </div>
       </div>
@@ -105,50 +133,6 @@ export function Portfolio() {
             <div className="text-gray-900 dark:text-white mb-1 md:text-right">GPA 3.84<span className='text-base font-normal'>/4.00</span></div>
           </div>
         </div>
-      </div>
-
-      {/* Contact Section */}
-      <div className="flex flex-col items-center justify-center py-12 px-4 relative z-10">
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">Get In Touch</h2>
-        <div className="flex items-center space-x-6">
-          <a
-            href="https://www.linkedin.com/in/yatharth-bajaj/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </a>
-          <a
-            href="https://github.com/Yatha04"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
-            aria-label="GitHub"
-          >
-            <Github className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </a>
-          <a
-            href="https://www.instagram.com/yatha0408/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
-            aria-label="Instagram"
-          >
-            <Instagram className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </a>
-          <a
-            href="mailto:bajajyh@mail.uc.edu"
-            className="p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-200"
-            aria-label="Email"
-          >
-            <Mail className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </a>
-        </div>
-        <p className="text-gray-600 dark:text-gray-400 mt-6 text-center">
-          Feel free to reach out and connect!
-        </p>
       </div>
     </>
   )

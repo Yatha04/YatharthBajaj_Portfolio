@@ -68,7 +68,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+    <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-100">
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center gap-2 p-2 bg-white/5 dark:bg-gray-900/5 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 dark:border-gray-700/30 shadow-black/5">
         {navItems.map((item) => (
