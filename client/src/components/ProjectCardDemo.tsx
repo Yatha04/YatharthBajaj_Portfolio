@@ -19,14 +19,13 @@ export const ProjectCardDemo = () => {
           Project Card Demo
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ProjectCard project={sampleProject} status="ongoing" />
+          <ProjectCard project={sampleProject} />
           <ProjectCard 
             project={{
               ...sampleProject,
               id: 'completed-project',
               title: 'Completed Project'
             }} 
-            status="completed" 
           />
           <ProjectCard 
             project={{
@@ -34,7 +33,6 @@ export const ProjectCardDemo = () => {
               id: 'planned-project',
               title: 'Planned Project'
             }} 
-            status="planned" 
           />
         </div>
       </div>
