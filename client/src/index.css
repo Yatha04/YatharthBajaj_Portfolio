@@ -117,6 +117,14 @@
   body {
     @apply bg-background text-foreground;
   }
+  @media (min-width: 768px) {
+    body, html {
+      cursor: none;
+    }
+    a, button, [role="button"], input, textarea, select {
+      cursor: none;
+    }
+  }
 }
 
 
