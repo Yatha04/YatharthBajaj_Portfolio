@@ -27,7 +27,7 @@ export function CustomCursor() {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-10 transition-opacity duration-200 blur-md ${
+      className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-10 transition-opacity duration-200 blur-md ${
         isVisible ? "opacity-70" : "opacity-0"
       } hidden md:block ${
         isDarkMode
@@ -35,7 +35,7 @@ export function CustomCursor() {
           : "bg-gradient-to-r from-gray-300/70 to-blue-400/50"
       }`}
       style={{
-        transform: `translate(${position.x - 32}px, ${position.y - 32}px)`,
+        transform: `translate(${position.x - 16}px, ${position.y - 16}px)`,
         transition: "transform 0.1s ease-out",
       }}
     />
