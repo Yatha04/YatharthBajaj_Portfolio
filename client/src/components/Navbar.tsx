@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
+import { useLenis } from '../context/LenisContext';
 import { Button } from './ui/button';
 import { Moon, Sun, Home, FileText, Briefcase, Code2, GraduationCap, Menu, X, Music } from 'lucide-react';
 
@@ -20,11 +21,14 @@ const navItems: NavItem[] = [
 
 export const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { lenis } = useLenis();
   const [activeSection, setActiveSection] = useState('home');
   const [isUserClicking, setIsUserClicking] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!lenis) return;
+
     const handleScroll = () => {
       // Don't update active section if user just clicked a button
       if (isUserClicking) return;
@@ -42,11 +46,17 @@ export const Navbar = () => {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isUserClicking]);
+    lenis.on('scroll', handleScroll);
+    return () => {
+      if (lenis && typeof lenis.off === 'function') {
+        lenis.off('scroll', handleScroll);
+      }
+    };
+  }, [lenis, isUserClicking]);
 
   const scrollToSection = (sectionId: string) => {
+    if (!lenis) return;
+
     // Set user clicking flag to prevent scroll interference
     setIsUserClicking(true);
     
@@ -58,7 +68,11 @@ export const Navbar = () => {
     
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      lenis.scrollTo(section, {
+        offset: 0,
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
     }
     
     // Reset the flag after a delay to allow scroll detection to resume
