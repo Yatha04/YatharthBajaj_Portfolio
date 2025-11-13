@@ -1,4 +1,4 @@
-import type { ApiResponse } from "shared/dist";
+import type { ApiResponse } from "shared";
 
 type VercelRequest = {
   method?: string;

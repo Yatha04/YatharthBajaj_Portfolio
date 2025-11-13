@@ -19,7 +19,8 @@
     "paths": {
       "@server/*": ["./server/src/*"],
       "@client/*": ["./client/src/*"],
-      "@shared/*": ["./shared/src/*"]
+      "@shared/*": ["./shared/src/*"],
+      "shared": ["./shared/dist"]
     },
 
     // Module resolution
