@@ -1,5 +1,11 @@
 {
   "buildCommand": "cd client && npm run build",
   "outputDirectory": "client/dist",
-  "framework": "vite"
-} 
+  "framework": "vite",
+  "git": {
+    "deploymentEnabled": {
+      "main": false,
+      "master": false
+    }
+  }
+}

@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { Navbar } from './Navbar'
 import { Typewriter } from './Typewriter'
 import { Experience } from './Experience'
@@ -6,6 +9,11 @@ import { InteractiveSkills } from './InteractiveSkills'
 import FancyLink from './FancyLink'
 
 export function Portfolio() {
+  const navigate = useNavigate()
+  const [lastClickTime, setLastClickTime] = useState(0)
+  const [glowActive, setGlowActive] = useState(false)
+  const DOUBLE_CLICK_DELAY = 500 // ms
+
   const skills = [
     "Languages: Python, JavaScript, TypeScript, C++, SQL, HTML, CSS",
     "Web Frameworks: React, Next.js, Node.js, bFastAPI",
@@ -16,6 +24,20 @@ export function Portfolio() {
     "Other: Agile Methodologies, Data Structures & Algorithms, Object-Oriented Programming, Microservices, Serverless Architecture"
   ];
 
+  const handleNameClick = () => {
+    const now = Date.now()
+    if (now - lastClickTime < DOUBLE_CLICK_DELAY) {
+      // Double click detected
+      setGlowActive(true)
+      setTimeout(() => {
+        navigate('/videos')
+        setGlowActive(false)
+      }, 300) // Small delay to allow animation to play
+    } else {
+      setLastClickTime(now)
+    }
+  }
+
   return (
     <>
       <Navbar />
@@ -23,9 +45,20 @@ export function Portfolio() {
       {/* Home Section */}
       <div id="home" className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
         <div className="text-center space-y-6">
-          <h1 className="text-6xl font-bold text-gray-900 dark:text-white">
+          <motion.h1
+            onClick={handleNameClick}
+            className="text-6xl font-bold text-gray-900 dark:text-white cursor-pointer select-none"
+            whileTap={{ scale: 0.98 }}
+            animate={{
+              textShadow: glowActive
+                ? '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3)'
+                : 'none',
+              scale: glowActive ? 1.02 : 1
+            }}
+            transition={{ duration: 0.3 }}
+          >
             Yatharth Bajaj
-          </h1>
+          </motion.h1>
           <div className="text-2xl text-gray-700 dark:text-gray-300">
             I love <Typewriter words={['travelling.', 'building.', 'photography.', 'learning.', 'music.', 'video games.', 'movies.']} />
           </div>
