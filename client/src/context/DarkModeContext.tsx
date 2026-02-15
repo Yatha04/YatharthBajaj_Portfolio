@@ -30,16 +30,27 @@ export const DarkModeProvider: React.FC<DarkModeProviderProps> = ({ children }) 
   });
 
   useEffect(() => {
-    // Apply dark mode class to document root
+    // Apply dark mode class to document root and set color-scheme
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
     }
     
     // Persist to localStorage
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
+
+  // Set initial color-scheme on mount
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.style.colorScheme = 'dark';
+    } else {
+      document.documentElement.style.colorScheme = 'light';
+    }
+  }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev: boolean) => !prev);

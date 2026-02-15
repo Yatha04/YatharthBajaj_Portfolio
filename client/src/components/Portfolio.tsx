@@ -6,6 +6,7 @@ import { Typewriter } from './Typewriter'
 import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
+import { Education } from './Education'
 import FancyLink from './FancyLink'
 
 export function Portfolio() {
@@ -39,9 +40,9 @@ export function Portfolio() {
   }
 
   return (
-    <>
+    <div className="pb-32">
       <Navbar />
-      
+
       {/* Home Section */}
       <div id="home" className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
         <div className="text-center space-y-6">
@@ -74,11 +75,9 @@ export function Portfolio() {
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             Hi, I'm Yatharth. I'm studying Computer Science @University of Cincinnati.
             <br />
-            Lately, I've been messing around, building projects trying to get into machine learning and AI. 
-
+            I'm currently working as a <i>Controls Engineer</i> @JTEKT NA. when I find time I'm learning and building ML projects on the side.
             <br />
-            <br />
-            I'm currently helping build voice agents for construction companies and I'm also an analyst @Bearcat Ventures. Open to any opportunities!
+            Open to any opportunities!
 
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
@@ -90,35 +89,41 @@ export function Portfolio() {
             >
               X
             </FancyLink>
-            <FancyLink 
-              href="https://www.linkedin.com/in/yatharth-bajaj/" 
+            <FancyLink
+              href="https://www.linkedin.com/in/yatharth-bajaj/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 text-lg"
             >
               LinkedIn
             </FancyLink>
-            <FancyLink 
-              href="https://github.com/Yatha04" 
+            <FancyLink
+              href="https://github.com/Yatha04"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 text-lg"
             >
               GitHub
             </FancyLink>
-            <FancyLink 
-              href="https://www.instagram.com/yatha0408/" 
+            <FancyLink
+              href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 text-lg"
             >
-              Instagram
+              Resume
             </FancyLink>
-            <FancyLink 
-              href="mailto:bajajyh@mail.uc.edu" 
+            <FancyLink
+              href="mailto:bajajyh@mail.uc.edu"
               className="text-gray-700 dark:text-gray-300 text-lg"
             >
               Email
+            </FancyLink>
+            <FancyLink
+              href="/honors"
+              className="text-gray-700 dark:text-gray-300 text-lg"
+            >
+              Honors Portfolio
             </FancyLink>
           </div>
         </div>
@@ -137,6 +142,11 @@ export function Portfolio() {
         </h2>
         <InteractiveSkills skills={skills} />
       </div>
-    </>
+
+      {/* Education Section */}
+      <div id="education" className="relative z-10">
+        <Education />
+      </div>
+    </div>
   )
-} 
+}

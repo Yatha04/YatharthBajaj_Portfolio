@@ -15,12 +15,42 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    id: 'JTEKT',
+    company: 'JTEKT North America',
+    role: 'Controls Engineer Co-op',
+    location: 'Greenville, SC',
+    locationType: 'On Site',
+    duration: 'Jan 2026 - Present',
+    description: '',
+    achievements: [
+      'Programmed a Pick and Place machine for a new part type', 'Experimenting with ML pipelines for industrial quality prediction using real PLC data and gradient boosting models', 'Helped deliver machines with 99% Chokko (Good parts VS Bad parts)'
+    ],
+    tags: ['PLC Programming', 'ML', 'Manufacturing'],
+    isHighlighted: false,
+    externalLink: 'https://jtekt.com',
+    logo: 'jtekt.png'
+  },
+  {
+    id: 'The Detail AI',
+    company: 'The Detail AI',
+    role: 'Software Developer Intern',
+    location: 'Cincinnati',
+    locationType: 'Remote',
+    duration: 'Sep 2025 - Dec 2025',
+    description: 'Worked on HeyJulia, an AI-voice assistant that captures data about your Construction project and delivers live insights.',
+    achievements: [
+      'Developed the Demo Agent for HeyJulia, which helps in customer onboarding and delivers a sample of what you can expect from the product.'],
+    tags: ['Python', 'Docker', 'Google Cloud', 'LLMs', 'PostreSQl', 'React', 'FastAPI'],
+    isHighlighted: false,
+    externalLink: 'https://thedetail.ai/'
+  },
+  {
     id: 'sprite-health',
     company: 'Sprite Health',
     role: 'Software Developer Co-Op',
     location: 'Texas',
     locationType: 'Remote',
-    duration: 'May 2025 – Present',
+    duration: 'May 2025 – Aug 2025',
     description: 'Working on healthcare technology solutions with focus on automation and data processing.',
     achievements: [
       'Implemented an automated file-monitoring pipeline leveraging scheduled data queries and pattern-detection algorithms, boosting issue detection from 0% to 90% within 1 hour',
@@ -86,7 +116,7 @@ export const experiences: Experience[] = [
 export const education = {
   institution: 'University of Cincinnati',
   degree: 'Class of 2027',
-  gpa: '3.84/4.00',
-  location: 'Cincinnati, Ohio',
-  externalLink: 'https://uc.edu'
-}; 
+  major: 'Computer Science',
+  gpa: '3.87/4.00',
+  location: 'Cincinnati, Ohio'
+};

@@ -3,9 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
     <title>Yatharth Bajaj</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" />
+    <script>
+      // Prevent Chrome forced dark mode by setting color-scheme immediately
+      (function() {
+        const saved = localStorage.getItem('darkMode');
+        const isDark = saved ? JSON.parse(saved) : false;
+        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
