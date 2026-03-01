@@ -149,8 +149,8 @@ export const HonorsPortfolio = () => {
                                     variants={itemVariants}
                                     layout
                                     className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isExpanded
-                                            ? 'border-primary/40 bg-card/50 shadow-lg shadow-primary/5'
-                                            : 'border-border/40 bg-card/20 hover:border-border/70 hover:bg-card/35'
+                                        ? 'border-primary/40 bg-card/50 shadow-lg shadow-primary/5'
+                                        : 'border-border/40 bg-card/20 hover:border-border/70 hover:bg-card/35'
                                         }`}
                                 >
                                     {/* Header Row (Clickable) */}

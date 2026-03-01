@@ -1,22 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark" />
     <title>Yatharth Bajaj</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" />
     <script>
-      // Prevent Chrome forced dark mode by setting color-scheme immediately
-      (function() {
-        const saved = localStorage.getItem('darkMode');
-        const isDark = saved ? JSON.parse(saved) : false;
-        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
-        if (isDark) {
-          document.documentElement.classList.add('dark');
-        }
-      })();
+      // Always enforce dark mode
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
     </script>
   </head>
   <body>
