@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, Users, Beaker, GraduationCap, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, BookOpen, Users, Beaker, GraduationCap, Quote, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { honorsData } from '../data/honors';
@@ -33,6 +33,13 @@ const itemVariants = {
 export const HonorsPortfolio = () => {
     const navigate = useNavigate();
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+    const [expandedYears, setExpandedYears] = useState<number[]>([0]);
+
+    const toggleYear = (index: number) => {
+        setExpandedYears(prev =>
+            prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+        );
+    };
 
     return (
         <motion.div
@@ -122,61 +129,101 @@ export const HonorsPortfolio = () => {
                     </motion.div>
                 </section>
 
-                {/* Year-In Reviews Section -- Vertical Timeline */}
+                {/* Year-In Reviews Section */}
                 <section>
-                    <motion.div variants={itemVariants} className="mb-12">
-                        <h2 className="text-3xl font-bold flex items-center gap-3 mb-16">
+                    <motion.div variants={itemVariants} className="mb-10">
+                        <h2 className="text-3xl font-bold flex items-center gap-3">
                             <span className="bg-primary/20 w-8 h-1 rounded-full"></span>
                             Year-In Reviews
                         </h2>
+                        <p className="text-muted-foreground mt-3 ml-11 text-sm">Click any year to expand its story.</p>
                     </motion.div>
 
-                    <div className="relative border-l-2 border-border/50 ml-4 md:ml-12 space-y-24">
-                        {honorsData.yearReviews.map((year, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                className="relative pl-8 md:pl-12"
-                            >
-                                {/* Timeline Dot */}
-                                <div className="absolute -left-[9px] top-0 w-4 h-4 bg-background border-4 border-primary rounded-full box-border" />
-
-                                <div className="grid lg:grid-cols-[2fr_1fr] gap-8">
-                                    <div className="flex flex-col gap-4">
-                                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                                            <span className="text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-3 py-1 rounded-full w-fit">
+                    <div className="space-y-3">
+                        {honorsData.yearReviews.map((year, index) => {
+                            const isExpanded = expandedYears.includes(index);
+                            const excerpt = year.content.split('\n\n')[0].slice(0, 120).trim() + '…';
+                            return (
+                                <motion.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    layout
+                                    className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isExpanded
+                                            ? 'border-primary/40 bg-card/50 shadow-lg shadow-primary/5'
+                                            : 'border-border/40 bg-card/20 hover:border-border/70 hover:bg-card/35'
+                                        }`}
+                                >
+                                    {/* Header Row (Clickable) */}
+                                    <button
+                                        className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer group"
+                                        onClick={() => toggleYear(index)}
+                                        aria-expanded={isExpanded}
+                                    >
+                                        <div className="flex items-start sm:items-center gap-4 flex-col sm:flex-row min-w-0">
+                                            <span className="shrink-0 text-xs font-bold tracking-widest text-primary uppercase bg-primary/10 px-3 py-1.5 rounded-full">
                                                 {year.year}
                                             </span>
-                                            <h3 className="text-2xl font-bold">{year.title}</h3>
+                                            <div className="min-w-0">
+                                                <h3 className="text-lg font-semibold leading-tight">{year.title}</h3>
+                                                {!isExpanded && (
+                                                    <p className="text-muted-foreground text-sm mt-0.5 truncate max-w-[480px]">{excerpt}</p>
+                                                )}
+                                            </div>
                                         </div>
-                                        <div className="bg-card/30 backdrop-blur-sm border border-border/40 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                            <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                                                {year.content}
-                                            </p>
-                                        </div>
-                                    </div>
+                                        <motion.div
+                                            animate={{ rotate: isExpanded ? 180 : 0 }}
+                                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                            className="shrink-0 p-1.5 rounded-full bg-primary/5 group-hover:bg-primary/15 transition-colors"
+                                        >
+                                            <ChevronDown className="w-4 h-4 text-primary" />
+                                        </motion.div>
+                                    </button>
 
-                                    {/* Image Gallery for this Year */}
-                                    {year.images && year.images.length > 0 && (
-                                        <div className="flex flex-col gap-4">
-                                            {year.images.map((img, imgIndex) => (
-                                                <motion.div
-                                                    key={imgIndex}
-                                                    whileHover={{ scale: 1.03, rotate: imgIndex % 2 === 0 ? 1 : -1 }}
-                                                    className="rounded-2xl overflow-hidden shadow-md h-full min-h-[200px]"
-                                                >
-                                                    <img
-                                                        src={img}
-                                                        alt={`${year.year} highlight ${imgIndex + 1}`}
-                                                        className="w-full h-full object-cover"
-                                                    />
-                                                </motion.div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </motion.div>
-                        ))}
+                                    {/* Expandable Content */}
+                                    <AnimatePresence initial={false}>
+                                        {isExpanded && (
+                                            <motion.div
+                                                key="content"
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="px-6 pb-6 pt-1">
+                                                    <div className="border-t border-border/30 pt-5">
+                                                        <div className={`grid gap-6 ${year.images && year.images.length > 0 ? 'lg:grid-cols-[2fr_1fr]' : ''}`}>
+                                                            <div className="border-l-4 border-primary/30 pl-5">
+                                                                <p className="text-muted-foreground leading-relaxed text-sm whitespace-pre-wrap">
+                                                                    {year.content}
+                                                                </p>
+                                                            </div>
+                                                            {year.images && year.images.length > 0 && (
+                                                                <div className="flex flex-col gap-3">
+                                                                    {year.images.map((img, imgIndex) => (
+                                                                        <motion.div
+                                                                            key={imgIndex}
+                                                                            whileHover={{ scale: 1.03, rotate: imgIndex % 2 === 0 ? 1 : -1 }}
+                                                                            className="rounded-xl overflow-hidden shadow-md aspect-video"
+                                                                        >
+                                                                            <img
+                                                                                src={img}
+                                                                                alt={`${year.year} highlight ${imgIndex + 1}`}
+                                                                                className="w-full h-full object-cover"
+                                                                            />
+                                                                        </motion.div>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </section>
 
