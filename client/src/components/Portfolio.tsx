@@ -75,7 +75,7 @@ export function Portfolio() {
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             Hi, I'm Yatharth. I'm studying Computer Science @University of Cincinnati.
             <br />
-            I'm currently working as a <i>Controls Engineer</i> @JTEKT NA. when I find time I'm learning and building ML projects on the side.
+            I'm currently working as a <i>Controls Engineer</i> @JTEKT NA. When I find time I'm learning and building ML projects on the side.
             <br />
             Open to any opportunities!
 
