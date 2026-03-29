@@ -1,18 +1,16 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { Navbar } from './Navbar'
-import { Typewriter } from './Typewriter'
 import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
 import { Education } from './Education'
 import FancyLink from './FancyLink'
+import { ParticleText } from './ParticleText'
 
 export function Portfolio() {
   const navigate = useNavigate()
   const [lastClickTime, setLastClickTime] = useState(0)
-  const [glowActive, setGlowActive] = useState(false)
   const DOUBLE_CLICK_DELAY = 500 // ms
 
   const skills = [
@@ -29,11 +27,7 @@ export function Portfolio() {
     const now = Date.now()
     if (now - lastClickTime < DOUBLE_CLICK_DELAY) {
       // Double click detected
-      setGlowActive(true)
-      setTimeout(() => {
-        navigate('/videos')
-        setGlowActive(false)
-      }, 300) // Small delay to allow animation to play
+      navigate('/videos')
     } else {
       setLastClickTime(now)
     }
@@ -44,26 +38,14 @@ export function Portfolio() {
       <Navbar />
 
       {/* Home Section */}
-      <div id="home" className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
-        <div className="text-center space-y-6">
-          <motion.h1
-            onClick={handleNameClick}
-            className="text-6xl font-bold text-gray-900 dark:text-white cursor-pointer select-none"
-            whileTap={{ scale: 0.98 }}
-            animate={{
-              textShadow: glowActive
-                ? '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3)'
-                : 'none',
-              scale: glowActive ? 1.02 : 1
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            Yatharth Bajaj
-          </motion.h1>
-          <div className="text-2xl text-gray-700 dark:text-gray-300">
-            I love <Typewriter words={['travelling.', 'building.', 'photography.', 'learning.', 'music.', 'video games.', 'movies.']} />
-          </div>
-        </div>
+      <div id="home" className="relative z-10 h-screen">
+        <ParticleText
+          text="Yatharth Bajaj"
+          subtitlePrefix="I love "
+          subtitleWords={['travelling.', 'building.', 'photography.', 'learning.', 'music.', 'video games.', 'movies.']}
+          className="absolute inset-0 w-full h-full cursor-pointer select-none"
+          onClick={handleNameClick}
+        />
       </div>
 
       {/* About Section */}
