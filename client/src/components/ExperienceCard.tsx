@@ -21,7 +21,10 @@ export const ExperienceCard = ({
   const panelId = `panel-${experience.id}`
 
   return (
-    <div className="relative w-full rounded-lg p-4 backdrop-blur-md bg-card/50 dark:bg-card/30 border border-border/50">
+    <div 
+      className="relative w-full rounded-lg p-4 backdrop-blur-md bg-card/50 dark:bg-card/30 border border-border/50 cursor-pointer transition-colors hover:bg-card/60 dark:hover:bg-card/40"
+      onClick={onToggle}
+    >
       {/* Header — always visible */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex flex-col gap-1 min-w-0">
@@ -33,7 +36,6 @@ export const ExperienceCard = ({
           </p>
         </div>
         <button
-          onClick={onToggle}
           aria-expanded={isExpanded}
           aria-controls={panelId}
           aria-label={isExpanded ? 'Collapse details' : 'Expand details'}

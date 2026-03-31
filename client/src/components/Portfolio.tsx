@@ -15,12 +15,12 @@ export function Portfolio() {
 
   const skills = [
     "Languages: Python, JavaScript, TypeScript, C++, SQL, HTML, CSS",
-    "Web Frameworks: React, Next.js, Node.js, bFastAPI",
+    "Web Frameworks: React, Next.js, Node.js, FastAPI",
     "AI/ML/DL: PyTorch, TensorFlow, Scikit-learn, Hugging Face Transformers, OpenCV",
     "Cloud: AWS (EC2, S3, Lambda, DynamoDB), Azure, Google Cloud Platform",
     "Databases: PostgreSQL, MySQL",
     "Tools & Technologies: Docker, Git, GitHub, CI/CD, REST APIs, GraphQL",
-    "Other: Agile Methodologies, Data Structures & Algorithms, Object-Oriented Programming, Microservices, Serverless Architecture"
+    "Other: Agile Methodologies, Data Structures & Algorithms, Object-Oriented Programming"
   ];
 
   const handleNameClick = () => {
@@ -106,6 +106,12 @@ export function Portfolio() {
               className="text-gray-700 dark:text-gray-300 text-lg"
             >
               Honors Portfolio
+            </FancyLink>
+            <FancyLink
+              href="/blog"
+              className="text-gray-700 dark:text-gray-300 text-lg"
+            >
+              Blog
             </FancyLink>
           </div>
         </div>

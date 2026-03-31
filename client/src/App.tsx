@@ -4,6 +4,7 @@ import { Portfolio } from './components/Portfolio'
 import { ExploreMore } from './components/ExploreMore'
 import { Videos } from './components/Videos'
 import { HonorsPortfolio } from './components/HonorsPortfolio'
+import { Blog } from './components/Blog'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/videos" element={<Videos />} />
         <Route path="/honors" element={<HonorsPortfolio />} />
         <Route path="*" element={<Portfolio />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </DarkModeProvider>
   )
