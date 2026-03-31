@@ -1,4 +1,4 @@
-n# Yatharth Bajaj - Personal Portfolio
+#Yatharth Bajaj - Personal Portfolio
 
 A modern, responsive personal portfolio website showcasing my skills, experience, and projects. Built with a focus on clean design, smooth animations, and excellent user experience.
 
