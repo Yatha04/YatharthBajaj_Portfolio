@@ -1,44 +1,82 @@
-import React from 'react';
-import { Experience } from '../data/experiences';
+import { ChevronRight } from 'lucide-react'
+import { Experience } from '../data/experiences'
+import { usePretextHeight } from '../hooks/usePretextHeight'
 
 interface ExperienceCardProps {
-  experience: Experience;
+  experience: Experience
+  isExpanded: boolean
+  onToggle: () => void
 }
 
-export const ExperienceCard: React.FC<ExperienceCardProps> = ({ 
-  experience
-}) => {
-  const CardContent = (
-    <>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#F2F2F2] to-[#D9D9D9] dark:from-gray-800 dark:to-gray-700 opacity-0 group-hover:opacity-50 transition-opacity duration-150 ease-in-out rounded-lg backdrop-blur-md"></div>
-      <div className="absolute top-0 left-0 w-32 h-32 bg-green-400/10 dark:bg-green-400/5 rounded-lg blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></div>
-      <div className="relative flex flex-col items-start justify-start gap-2 w-full">
-        <h2 className="font-bold text-accent-foreground text-base">{experience.role} @ {experience.company}</h2>
-        <p className="font-medium text-muted-foreground text-sm">{experience.duration}</p>
-        {experience.achievements.map((item, index) => (
-          <p key={index} className="font-medium text-accent-foreground text-sm">{item}</p>
-        ))}
-      </div>
-    </>
-  );
+export const ExperienceCard = ({
+  experience,
+  isExpanded,
+  onToggle,
+}: ExperienceCardProps) => {
+  const { panelRef, contentRef, height } = usePretextHeight(
+    experience.achievements,
+    experience.tags.length
+  )
 
-  if (experience.externalLink) {
-    return (
-      <a
-        href={experience.externalLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block relative w-full rounded-lg p-4 transition-all duration-150 ease-in-out group z-50 backdrop-blur-md bg-card/50 dark:bg-card/30 border border-border/50 hover:border-border"
-      >
-        {CardContent}
-      </a>
-    );
-  }
+  const panelId = `panel-${experience.id}`
 
   return (
-    <div className="block relative w-full rounded-lg p-4 transition-all duration-150 ease-in-out group z-50 backdrop-blur-md bg-card/50 dark:bg-card/30 border border-border/50">
-      {CardContent}
-    </div>
-  );
-};
+    <div 
+      className="relative w-full rounded-lg p-4 backdrop-blur-md bg-card/50 dark:bg-card/30 border border-border/50 cursor-pointer transition-colors hover:bg-card/60 dark:hover:bg-card/40"
+      onClick={onToggle}
+    >
+      {/* Header — always visible */}
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-1 min-w-0">
+          <h3 className="font-bold text-accent-foreground text-base">
+            {experience.role} @ {experience.company}
+          </h3>
+          <p className="font-medium text-muted-foreground text-sm">
+            {experience.duration}
+          </p>
+        </div>
+        <button
+          aria-expanded={isExpanded}
+          aria-controls={panelId}
+          aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
+          className="p-1.5 rounded-md hover:bg-accent/50 transition-colors shrink-0 mt-0.5 focus-visible:outline-2 focus-visible:outline-ring"
+        >
+          <ChevronRight
+            className={`w-4 h-4 text-muted-foreground transition-transform duration-[180ms] ease-in-out motion-reduce:duration-0 ${isExpanded ? 'rotate-90' : ''}`}
+          />
+        </button>
+      </div>
 
+      {/* Expandable panel */}
+      <div
+        id={panelId}
+        role="region"
+        ref={panelRef}
+        style={{ height: isExpanded ? `${height}px` : '0px' }}
+        className="overflow-clip transition-[height] duration-[180ms] ease-in-out motion-reduce:duration-0"
+      >
+        <div ref={contentRef} className="pt-3">
+          <ul className="space-y-1.5 list-disc list-inside">
+            {experience.achievements.map((item, i) => (
+              <li key={i} className="text-accent-foreground text-sm font-medium">
+                {item}
+              </li>
+            ))}
+          </ul>
+          {experience.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {experience.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-secondary text-secondary-foreground text-xs rounded-full px-2.5 py-0.5"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}

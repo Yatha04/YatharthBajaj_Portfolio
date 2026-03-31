@@ -1,7 +1,22 @@
-import { experiences } from '../data/experiences';
-import { ExperienceCard } from './ExperienceCard';
+import { useCallback, useState } from 'react'
+import { experiences } from '../data/experiences'
+import { ExperienceCard } from './ExperienceCard'
 
 export const Experience = () => {
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
+
+  const handleToggle = useCallback((id: string) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        next.add(id)
+      }
+      return next
+    })
+  }, [])
+
   return (
     <div className="py-16 px-4 bg-transparent">
       <div className="max-w-4xl mx-auto">
@@ -11,13 +26,15 @@ export const Experience = () => {
         </div>
         <div className="flex flex-col gap-4">
           {experiences.map((experience) => (
-            <ExperienceCard 
+            <ExperienceCard
               key={experience.id}
               experience={experience}
+              isExpanded={expandedIds.has(experience.id)}
+              onToggle={() => handleToggle(experience.id)}
             />
           ))}
         </div>
       </div>
     </div>
-  );
-}; 
+  )
+}

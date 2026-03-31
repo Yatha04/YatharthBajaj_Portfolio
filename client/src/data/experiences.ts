@@ -64,7 +64,7 @@ export const experiences: Experience[] = [
   },
   {
     id: 'jtekt',
-    company: 'JTEKT North America Corporation',
+    company: 'JTEKT North America',
     role: 'Controls Engineer Co-Op',
     location: 'South Carolina',
     locationType: 'On Site',
@@ -85,31 +85,15 @@ export const experiences: Experience[] = [
     role: 'Front Desk Assistant, Peer Tutor',
     location: 'Cincinnati',
     locationType: 'On Site',
-    duration: 'May 2023 – April 2025',
+    duration: 'May 2023 – Dec 2025',
     description: 'Provided administrative support and academic tutoring services to university students.',
     achievements: [
       'Managed front-desk operations, provided administrative support for a dorm of 1000+ students',
-      'Conducted 100+ 1-1 tutoring sessions in Math, Physics, Chemistry, CS, Engineering Design'
+      'Conducted 100+ 1-1 tutoring sessions in Math, Physics, Chemistry, CS, Engineering Design, Study habits, Time Management'
     ],
     tags: ['Student Services', 'Tutoring', 'Administration', 'Education'],
     externalLink: 'https://uc.edu',
     logo: 'uc.png'
-  },
-  {
-    id: 'swiggy-bundl',
-    company: 'Swiggy-Bundl Technologies Pvt Ltd',
-    role: 'Software Developer Intern',
-    location: 'India',
-    locationType: 'Remote',
-    duration: 'Jun 2023 – Aug 2023',
-    description: 'Worked on UI/UX optimization and gained exposure to modern development practices.',
-    achievements: [
-      'Optimized UI/UX for 10+ app components with Figma, JavaScript, HTML, and CSS',
-      'Gained exposure to Cloud Computing and Docker Engine, broadening insights into modern practice'
-    ],
-    tags: ['UI/UX', 'Figma', 'JavaScript', 'HTML/CSS', 'Cloud Computing', 'Docker'],
-    externalLink: 'https://swiggy.com',
-    logo: 'swiggy.png'
   }
 ];
 
