@@ -4,13 +4,14 @@ import { Navbar } from './Navbar'
 import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
-import { Education } from './Education'
 import FancyLink from './FancyLink'
 import { ParticleText } from './ParticleText'
 
 export function Portfolio() {
   const navigate = useNavigate()
   const [lastClickTime, setLastClickTime] = useState(0)
+  const [showCopied, setShowCopied] = useState(false)
+  const [showBlogProgress, setShowBlogProgress] = useState(false)
   const DOUBLE_CLICK_DELAY = 500 // ms
 
   const skills = [
@@ -42,7 +43,7 @@ export function Portfolio() {
         <ParticleText
           text="Yatharth Bajaj"
           subtitlePrefix="I love "
-          subtitleWords={['travelling.', 'building.', 'photography.', 'learning.', 'music.', 'video games.', 'movies.']}
+          subtitleWords={['exploring new places.', 'building.', 'taking pictures.', 'listening to music.', 'playing video games.', 'watching movies and TV shows.', 'playing soccer.']}
           className="absolute inset-0 w-full h-full cursor-pointer select-none"
           onClick={handleNameClick}
         />
@@ -55,11 +56,10 @@ export function Portfolio() {
             About Me
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            Hi, I'm Yatharth. I'm studying Computer Science @University of Cincinnati.
+            Studying <a href="https://www.uc.edu/" target="_blank" rel="noopener noreferrer"><i>Computer Science & Math.</i></a>
+            <br />Interning as a <i>Controls Engineer</i> <a href="https://jtekt-na.com/" target="_blank" rel="noopener noreferrer">@JTEKT NA</a>.
             <br />
-            I'm currently working as a <i>Controls Engineer</i> @JTEKT NA. When I find time I'm learning and building ML projects on the side.
-            <br />
-            Open to any opportunities!
+            I've been trying to get into <i>Machine Learning</i> and build some cool projects.
 
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
@@ -95,24 +95,48 @@ export function Portfolio() {
             >
               Resume
             </FancyLink>
-            <FancyLink
-              href="mailto:bajajyh@mail.uc.edu"
-              className="text-gray-700 dark:text-gray-300 text-lg"
-            >
-              Email
-            </FancyLink>
+            <div className="relative flex flex-col items-center justify-center">
+              <FancyLink
+                href="mailto:bajajyh@mail.uc.edu"
+                className="text-gray-700 dark:text-gray-300 text-lg"
+                onClick={() => {
+                  navigator.clipboard.writeText('bajajyh@mail.uc.edu')
+                  setShowCopied(true)
+                  setTimeout(() => setShowCopied(false), 2000)
+                }}
+              >
+                Email
+              </FancyLink>
+              <div
+                className={`absolute -bottom-10 whitespace-nowrap px-2.5 py-1 bg-black/10 text-gray-900 dark:bg-black/20 dark:text-white border border-black/20 dark:border-black/20 rounded-md text-xs font-semibold transition-all duration-300 pointer-events-none flex items-center gap-1.5 backdrop-blur-sm shadow-sm ${showCopied ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-1 scale-95'}`}
+              >
+                <span className="text-xs"></span> Copied to clipboard!
+              </div>
+            </div>
             <FancyLink
               href="/honors"
               className="text-gray-700 dark:text-gray-300 text-lg"
             >
               Honors Portfolio
             </FancyLink>
-            <FancyLink
-              href="/blog"
-              className="text-gray-700 dark:text-gray-300 text-lg"
-            >
-              Blog
-            </FancyLink>
+            <div className="relative flex flex-col items-center justify-center">
+              <FancyLink
+                href="/blog"
+                className="text-gray-700 dark:text-gray-300 text-lg"
+                onClick={(e) => {
+                  e.preventDefault() // Prevents the link from actually navigating
+                  setShowBlogProgress(true)
+                  setTimeout(() => setShowBlogProgress(false), 2000)
+                }}
+              >
+                Blog
+              </FancyLink>
+              <div
+                className={`absolute -bottom-10 whitespace-nowrap px-2.5 py-1 bg-black/10 text-gray-900 dark:bg-black/20 dark:text-white border border-black/20 dark:border-black/20 rounded-md text-xs font-semibold transition-all duration-300 pointer-events-none flex items-center gap-1.5 backdrop-blur-sm shadow-sm ${showBlogProgress ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-1 scale-95'}`}
+              >
+                Building rn, come back soon!
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -129,11 +153,6 @@ export function Portfolio() {
           My Skills
         </h2>
         <InteractiveSkills skills={skills} />
-      </div>
-
-      {/* Education Section */}
-      <div id="education" className="relative z-10">
-        <Education />
       </div>
     </div>
   )

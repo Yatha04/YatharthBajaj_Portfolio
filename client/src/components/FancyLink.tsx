@@ -5,6 +5,7 @@ type FancyLinkProps = React.PropsWithChildren<{
   className?: string;
   target?: string;
   rel?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }>;
 
 export default function FancyLink({
@@ -13,12 +14,14 @@ export default function FancyLink({
   className = "",
   target,
   rel,
+  onClick,
 }: FancyLinkProps) {
   return (
     <a
       href={href}
       target={target}
       rel={rel}
+      onClick={onClick}
       className={`
       relative transition-all duration-300 ease-in-out hover:translate-x-0.5 hover:text-accent-foreground
       after:content-[''] after:absolute after:w-0 after:h-px after:-bottom-0.5 after:left-0 

@@ -13,7 +13,7 @@ export const Typewriter = ({ words, speed = 100, delay = 2000 }: TypewriterProps
 
   useEffect(() => {
     const currentWord = words[currentWordIndex];
-    
+
     if (isDeleting) {
       // Deleting effect
       if (currentText === '') {
@@ -21,11 +21,11 @@ export const Typewriter = ({ words, speed = 100, delay = 2000 }: TypewriterProps
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
         return;
       }
-      
+
       const timeout = setTimeout(() => {
         setCurrentText(currentText.slice(0, -1));
       }, speed / 2);
-      
+
       return () => clearTimeout(timeout);
     } else {
       // Typing effect
@@ -34,14 +34,14 @@ export const Typewriter = ({ words, speed = 100, delay = 2000 }: TypewriterProps
         const timeout = setTimeout(() => {
           setIsDeleting(true);
         }, delay);
-        
+
         return () => clearTimeout(timeout);
       }
-      
+
       const timeout = setTimeout(() => {
         setCurrentText(currentWord.slice(0, currentText.length + 1));
       }, speed);
-      
+
       return () => clearTimeout(timeout);
     }
   }, [currentText, currentWordIndex, isDeleting, words, speed, delay]);

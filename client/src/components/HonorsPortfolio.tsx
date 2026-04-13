@@ -136,7 +136,6 @@ export const HonorsPortfolio = () => {
                             <span className="bg-primary/20 w-8 h-1 rounded-full"></span>
                             Year-In Reviews
                         </h2>
-                        <p className="text-muted-foreground mt-3 ml-11 text-sm">Click any year to expand its story.</p>
                     </motion.div>
 
                     <div className="space-y-3">

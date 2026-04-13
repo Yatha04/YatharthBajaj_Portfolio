@@ -78,22 +78,6 @@ export const experiences: Experience[] = [
     tags: ['AI', 'Automation', 'Manufacturing', 'Controls Engineering', 'Prototyping'],
     externalLink: 'https://jtekt.com',
     logo: 'jtekt.png'
-  },
-  {
-    id: 'uc-cincinnati',
-    company: 'University of Cincinnati',
-    role: 'Front Desk Assistant, Peer Tutor',
-    location: 'Cincinnati',
-    locationType: 'On Site',
-    duration: 'May 2023 – Dec 2025',
-    description: 'Provided administrative support and academic tutoring services to university students.',
-    achievements: [
-      'Managed front-desk operations, provided administrative support for a dorm of 1000+ students',
-      'Conducted 100+ 1-1 tutoring sessions in Math, Physics, Chemistry, CS, Engineering Design, Study habits, Time Management'
-    ],
-    tags: ['Student Services', 'Tutoring', 'Administration', 'Education'],
-    externalLink: 'https://uc.edu',
-    logo: 'uc.png'
   }
 ];
 

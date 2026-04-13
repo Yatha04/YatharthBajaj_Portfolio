@@ -20,8 +20,8 @@ interface ParticleTextProps {
   onClick?: () => void
 }
 
-const NAME_FONT = 'Space Grotesk'
-const SUBTITLE_FONT = 'Outfit'
+const NAME_FONT = 'Geist'
+const SUBTITLE_FONT = 'Special Elite'
 const MOUSE_RADIUS = 120
 const MOUSE_FORCE = 10
 const SPRING = 0.035
@@ -96,7 +96,7 @@ export function ParticleText({
 
     // Big font — scales with viewport, caps at 160px
     const fontSize = Math.min(w * 0.12, 160)
-    const font = `700 ${fontSize}px "${NAME_FONT}", sans-serif`
+    const font = `bold ${fontSize}px "${NAME_FONT}", sans-serif`
     const lineHeight = fontSize * 1.2
 
     // Use pretext to measure and lay out the text
@@ -161,7 +161,10 @@ export function ParticleText({
     const canvas = canvasRef.current
     if (!canvas) return
 
-    document.fonts.ready.then(() => {
+    Promise.all([
+      document.fonts.load(`10px "${NAME_FONT}"`),
+      document.fonts.load(`10px "${SUBTITLE_FONT}"`)
+    ]).then(() => {
       buildParticles(canvas)
     })
 
@@ -280,7 +283,7 @@ export function ParticleText({
 
         // Draw typed word in blue
         ctx.fillStyle = 'rgba(96, 165, 250, 0.95)'
-        ctx.font = `600 ${subSize}px "${SUBTITLE_FONT}", sans-serif`
+        ctx.font = `bold ${subSize}px "${SUBTITLE_FONT}", sans-serif`
         ctx.fillText(typed, startX + prefixWidth, subY)
 
         // Draw blinking cursor
