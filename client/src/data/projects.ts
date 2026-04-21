@@ -9,6 +9,38 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'LogixLens',
+    title: 'LogixLens',
+    date: 'February 2026',
+    description: [
+      'Built a 9-stage parsing pipeline for PLC programs, constructing a Neo4j knowledge graph of tags, faults, and mapping',
+      'Layered a RAG + LLM query interface over the graph, reducing troubleshooting time from hours to seconds',
+    ],
+    tech: ['Python', 'Neo4j', 'RAG', 'LLM'],
+  },
+  {
+    id: 'Lumen',
+    title: 'Lumen',
+    date: 'February 2026',
+    description: [
+      'VS Code extension that auto-detects code diffs and generates contextual, multi-depth explanations in the sidebar',
+      'Powered by an LLM pipeline for intelligent code understanding',
+    ],
+    tech: ['TypeScript', 'VS Code API', 'LLM'],
+    github: 'https://github.com/Yatha04/Lumen',
+  },
+  {
+    id: 'CrossPlay',
+    title: 'CrossPlay',
+    date: 'April 2026',
+    description: [
+      'Built a two-way playlist sync service between Spotify and YouTube Music with a 5-step fuzzy matching engine and 3-step verification for cross-platform song resolution',
+      'Developed background daemon sync, one-off runs, and public playlist migration via a CLI, backed by 206 automated tests',
+    ],
+    tech: ['Python', 'FastAPI', 'SQLite', 'APScheduler'],
+    github: 'https://github.com/Yatha04/CrossPlay',
+  },
+  {
     id: 'Grassroots',
     title: 'Grassroots',
     date: 'October 2025',
@@ -48,14 +80,4 @@ export const projects: Project[] = [
     ],
     tech: ['Robotics', 'Python', 'Computer Vision', 'Actuators'],
   },
-  {
-    id: 'Precision MMA Website',
-    title: 'Precision MMA Website',
-    date: 'June 2025',
-    description: [  
-      'A website for a martial arts academy, available on GitHub',
-    ],
-    tech: ['React', 'TypeScript', 'TailwindCSS'],
-    github: 'https://github.com/Yatha04/Precision_MMA',
-  }
 ]; 

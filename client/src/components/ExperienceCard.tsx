@@ -58,7 +58,7 @@ export const ExperienceCard = ({
         <div ref={contentRef} className="pt-3">
           <ul className="space-y-1.5 list-disc list-inside">
             {experience.achievements.map((item, i) => (
-              <li key={i} className="text-accent-foreground text-sm font-medium">
+              <li key={i} className="text-accent-foreground text-xs md:text-sm font-medium">
                 {item}
               </li>
             ))}
