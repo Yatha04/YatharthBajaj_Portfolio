@@ -1,6 +1,7 @@
 export interface Project {
   id: string;
   title: string;
+  tagline: string;
   description: string[];
   tech: string[];
   github?: string;
@@ -11,6 +12,7 @@ export const projects: Project[] = [
   {
     id: 'LogixLens',
     title: 'LogixLens',
+    tagline: 'PLC knowledge graph with RAG-powered troubleshooting',
     date: 'February 2026',
     description: [
       'Built a 9-stage parsing pipeline for PLC programs, constructing a Neo4j knowledge graph of tags, faults, and mapping',
@@ -21,6 +23,7 @@ export const projects: Project[] = [
   {
     id: 'Lumen',
     title: 'Lumen',
+    tagline: 'VS Code extension for contextual code explanations',
     date: 'February 2026',
     description: [
       'VS Code extension that auto-detects code diffs and generates contextual, multi-depth explanations in the sidebar',
@@ -32,6 +35,7 @@ export const projects: Project[] = [
   {
     id: 'CrossPlay',
     title: 'CrossPlay',
+    tagline: 'Two-way Spotify ↔ YouTube Music playlist sync service',
     date: 'April 2026',
     description: [
       'Built a two-way playlist sync service between Spotify and YouTube Music with a 5-step fuzzy matching engine and 3-step verification for cross-platform song resolution',
@@ -43,6 +47,7 @@ export const projects: Project[] = [
   {
     id: 'Grassroots',
     title: 'Grassroots',
+    tagline: 'AI-powered phone banking training platform',
     date: 'October 2025',
     description: [
       'A comprehensive training platform that combines realistic voter simulations with advanced performance analytics to help political volunteers excel at phone banking. ',
@@ -53,6 +58,7 @@ export const projects: Project[] = [
   {
     id: 'Poke MCP',
     title: 'Poke MCP',
+    tagline: 'Connecting Strava, smart lights, and more to Poke Agent',
     date: 'November 2025',
     description: [
       'Connecting Strava data, room light controls, and more to the Poke (Interaction Company) Agent through MCP.',
@@ -62,6 +68,7 @@ export const projects: Project[] = [
   {
     id: 'Rash Driving AI',
     title: 'Rash Driving AI',
+    tagline: 'Computer-vision pipeline for detecting rash driving',
     date: 'June 2025',
     description: [
       'Developed a computer-vision pipeline using OpenCV & YOLOv5 to detect rash driving behaviors in traffic',
@@ -73,6 +80,7 @@ export const projects: Project[] = [
   {
     id: 'Robotic Arm',
     title: 'Robotic Arm',
+    tagline: 'Object recognition and manipulation with a custom robotic arm',
     date: 'December 2024',
     description: [
       'Built a robotic arm with actuators, motors, and a camera for object recognition and manipulation',

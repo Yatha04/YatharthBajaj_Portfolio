@@ -1,7 +1,22 @@
-import { projects } from '../data/projects';
-import { ProjectCard } from './ProjectCard';
+import { useCallback, useState } from 'react'
+import { projects } from '../data/projects'
+import { ProjectCard } from './ProjectCard'
 
 export const ProjectsGrid = () => {
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
+
+  const handleToggle = useCallback((id: string) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        next.add(id)
+      }
+      return next
+    })
+  }, [])
+
   return (
     <div className="py-10 md:py-16 px-4 bg-transparent">
       <div className="max-w-4xl mx-auto">
@@ -11,13 +26,15 @@ export const ProjectsGrid = () => {
         </div>
         <div className="flex flex-col gap-4">
           {projects.map((project) => (
-            <ProjectCard 
+            <ProjectCard
               key={project.id}
               project={project}
+              isExpanded={expandedIds.has(project.id)}
+              onToggle={() => handleToggle(project.id)}
             />
           ))}
         </div>
       </div>
     </div>
-  );
-}; 
+  )
+}
