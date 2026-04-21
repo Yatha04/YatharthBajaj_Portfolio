@@ -6,6 +6,7 @@ import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
 import FancyLink from './FancyLink'
 import { ParticleText } from './ParticleText'
+import { AnimatedBackground } from './AnimatedBackground'
 
 export function Portfolio() {
   const navigate = useNavigate()
@@ -36,6 +37,7 @@ export function Portfolio() {
 
   return (
     <div className="pb-32">
+      <AnimatedBackground />
       <Navbar />
 
       {/* Home Section */}
