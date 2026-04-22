@@ -1,48 +1,62 @@
-import { Navbar } from './Navbar'
+import { Home } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Button } from './ui/button'
+import { blogEntries } from '../data/blog'
+import { AnimatedBackground } from './AnimatedBackground'
+import { BlogEntryCard } from './BlogEntryCard'
 
 export function Blog() {
-    return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-32">
-            <Navbar />
+    const navigate = useNavigate()
 
-            <div className="max-w-4xl mx-auto px-4 pt-32">
-                <div className="text-center space-y-6">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                        My Blog
+    return (
+        <div className="min-h-screen pb-32">
+            <AnimatedBackground />
+
+            <div className="relative z-10 max-w-2xl mx-auto px-6 pt-24">
+                <div className="text-center mb-14">
+                    <h1
+                        className="text-6xl md:text-7xl font-bold italic text-gray-900 dark:text-white leading-none"
+                        style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                        Blog
                     </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-400">
-                        Coming soon! I'm currently working on adding my thoughts and projects here.
+                    <p
+                        className="mt-4 text-sm md:text-base text-gray-500 dark:text-gray-400 tracking-wide"
+                        style={{ fontFamily: "'Special Elite', monospace" }}
+                    >
+                        notes from a work in progress.
                     </p>
                 </div>
 
-                <div className="mt-16 grid gap-8 md:grid-cols-2">
-                    {/* Placeholder Blog Post 1 */}
-                    <article className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                            Future Post Title
-                        </h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            This is a placeholder for a future blog post. It will contain interesting thoughts, tutorials, or updates about my projects.
-                        </p>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                            Expected soon...
-                        </div>
-                    </article>
-
-                    {/* Placeholder Blog Post 2 */}
-                    <article className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                            Another Future Post
-                        </h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            Stay tuned for more updates. I'll be sharing insights about my experiences and the things I learn along the way.
-                        </p>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                            Expected soon...
-                        </div>
-                    </article>
-                </div>
+                {blogEntries.length === 0 ? (
+                    <p className="text-gray-500 dark:text-gray-400 text-center">
+                        Nothing here yet. Check back soon.
+                    </p>
+                ) : (
+                    <ul className="space-y-4">
+                        {blogEntries.map((entry) => (
+                            <li key={entry.id}>
+                                <BlogEntryCard entry={entry} />
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
+
+            <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-100">
+                <div className="flex items-center gap-2 p-2 bg-white/5 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 shadow-black/5">
+                    <Button
+                        variant="default"
+                        size="sm"
+                        onClick={() => navigate('/')}
+                        className="rounded-full h-10 px-4 flex items-center justify-center transition-all duration-200 space-x-2"
+                        title="Home"
+                    >
+                        <Home className="w-5 h-5 mr-2" />
+                        <span className="text-sm font-medium">Home</span>
+                    </Button>
+                </div>
+            </nav>
         </div>
     )
 }

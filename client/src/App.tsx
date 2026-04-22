@@ -5,6 +5,7 @@ import { ExploreMore } from './components/ExploreMore'
 import { Videos } from './components/Videos'
 import { HonorsPortfolio } from './components/HonorsPortfolio'
 import { Blog } from './components/Blog'
+import { BlogPost } from './components/BlogPost'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
@@ -41,8 +42,9 @@ function App() {
         <Route path="/explore" element={<ExploreMore />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/honors" element={<HonorsPortfolio />} />
-        <Route path="*" element={<Portfolio />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
+        <Route path="*" element={<Portfolio />} />
       </Routes>
     </DarkModeProvider>
   )

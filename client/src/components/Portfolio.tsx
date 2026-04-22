@@ -15,7 +15,6 @@ export function Portfolio() {
   const isMobile = useIsMobile()
   const [lastClickTime, setLastClickTime] = useState(0)
   const [showCopied, setShowCopied] = useState(false)
-  const [showBlogProgress, setShowBlogProgress] = useState(false)
   const DOUBLE_CLICK_DELAY = 500 // ms
 
   const subtitleWords = ['exploring new places.', 'building.', 'taking pictures.', 'listening to music.', 'playing video games.', 'watching movies and TV shows.', 'playing soccer.']
@@ -135,24 +134,12 @@ export function Portfolio() {
             >
               Honors Portfolio
             </FancyLink>
-            <div className="relative flex flex-col items-center justify-center">
-              <FancyLink
-                href="/blog"
-                className="text-gray-700 dark:text-gray-300 text-base md:text-lg"
-                onClick={(e) => {
-                  e.preventDefault() // Prevents the link from actually navigating
-                  setShowBlogProgress(true)
-                  setTimeout(() => setShowBlogProgress(false), 2000)
-                }}
-              >
-                Blog
-              </FancyLink>
-              <div
-                className={`absolute -bottom-10 whitespace-nowrap px-2.5 py-1 bg-black/10 text-gray-900 dark:bg-black/20 dark:text-white border border-black/20 dark:border-black/20 rounded-md text-xs font-semibold transition-all duration-300 pointer-events-none flex items-center gap-1.5 backdrop-blur-sm shadow-sm ${showBlogProgress ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-1 scale-95'}`}
-              >
-                Building rn, come back soon!
-              </div>
-            </div>
+            <FancyLink
+              href="/blog"
+              className="text-gray-700 dark:text-gray-300 text-base md:text-lg"
+            >
+              Blog
+            </FancyLink>
           </div>
         </div>
       </div>
