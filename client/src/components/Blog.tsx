@@ -18,7 +18,7 @@ export function Blog() {
                         className="text-6xl md:text-7xl font-bold italic text-gray-900 dark:text-white leading-none"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                     >
-                        Blog
+                        Blogs
                     </h1>
                     <p
                         className="mt-4 text-sm md:text-base text-gray-500 dark:text-gray-400 tracking-wide"
