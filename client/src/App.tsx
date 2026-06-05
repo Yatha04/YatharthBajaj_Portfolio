@@ -6,6 +6,7 @@ import { Videos } from './components/Videos'
 import { HonorsPortfolio } from './components/HonorsPortfolio'
 import { Blog } from './components/Blog'
 import { BlogPost } from './components/BlogPost'
+import { RippleTransition } from './components/RippleTransition'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <DarkModeProvider>
+      <RippleTransition />
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/explore" element={<ExploreMore />} />

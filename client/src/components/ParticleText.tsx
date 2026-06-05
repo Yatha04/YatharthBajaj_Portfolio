@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react'
 import { prepareWithSegments, layoutWithLines } from '@chenglou/pretext'
+import { useDarkMode } from '../context/DarkModeContext'
 
 interface Particle {
   x: number
@@ -72,6 +73,10 @@ export function ParticleText({
   className,
   onClick,
 }: ParticleTextProps) {
+  const { isDarkMode } = useDarkMode()
+  const isDarkModeRef = useRef(isDarkMode)
+  useEffect(() => { isDarkModeRef.current = isDarkMode }, [isDarkMode])
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const mouseRef = useRef({ x: -9999, y: -9999 })
@@ -242,10 +247,19 @@ export function ParticleText({
         p.y += p.vy
 
         const displacement = Math.sqrt(dx * dx + dy * dy)
-        const blueTint = Math.min(displacement / 60, 1)
-        const r = Math.round(255 - blueTint * 100)
-        const g = Math.round(255 - blueTint * 70)
-        const b = 255
+        const tint = Math.min(displacement / 60, 1)
+        let r: number, g: number, b: number
+        if (isDarkModeRef.current) {
+          // White with blue displacement tint (original dark-mode behavior)
+          r = Math.round(255 - tint * 100)
+          g = Math.round(255 - tint * 70)
+          b = 255
+        } else {
+          // Dark gray with warm amber displacement tint for light mode
+          r = Math.round(30 + tint * 60)
+          g = Math.round(30 + tint * 30)
+          b = Math.round(30 - tint * 10)
+        }
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
@@ -276,20 +290,25 @@ export function ParticleText({
 
         const startX = w / 2 - (totalWidth + cursorWidth) / 2
 
-        // Draw prefix
+        // Draw prefix — light gray in dark mode, dark gray in light mode
         ctx.textAlign = 'left'
-        ctx.fillStyle = 'rgba(209, 213, 219, 0.9)'
+        ctx.fillStyle = isDarkModeRef.current
+          ? 'rgba(209, 213, 219, 0.9)'
+          : 'rgba(60, 60, 70, 0.85)'
         ctx.fillText(prefix, startX, subY)
 
-        // Draw typed word in blue
-        ctx.fillStyle = 'rgba(96, 165, 250, 0.95)'
+        // Draw typed word — blue works in both modes
+        ctx.fillStyle = isDarkModeRef.current
+          ? 'rgba(96, 165, 250, 0.95)'
+          : 'rgba(37, 99, 235, 0.95)'
         ctx.font = `bold ${subSize}px "${SUBTITLE_FONT}", sans-serif`
         ctx.fillText(typed, startX + prefixWidth, subY)
 
         // Draw blinking cursor
         const now = Date.now()
         const cursorAlpha = Math.sin(now * 0.005) * 0.4 + 0.6
-        ctx.fillStyle = `rgba(96, 165, 250, ${cursorAlpha})`
+        const [cr, cg, cb] = isDarkModeRef.current ? [96, 165, 250] : [37, 99, 235]
+        ctx.fillStyle = `rgba(${cr}, ${cg}, ${cb}, ${cursorAlpha})`
         ctx.fillText('|', startX + prefixWidth + typedWidth, subY)
       }
 

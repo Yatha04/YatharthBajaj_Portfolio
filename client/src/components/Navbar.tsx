@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Home, FileText, Briefcase, Code2, Music } from 'lucide-react';
+import { DarkModeToggle } from './DarkModeToggle';
 
 interface NavItem {
   id: string;
@@ -63,7 +64,7 @@ export const Navbar = () => {
   return (
     <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-100">
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-2 p-2 bg-white/5 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 shadow-black/5">
+      <div className="hidden md:flex items-center gap-2 p-2 dark:bg-white/5 bg-black/5 backdrop-blur-xl rounded-full shadow-2xl border border-border shadow-black/5">
         {navItems.map((item) => (
           <Button
             key={item.id}
@@ -77,10 +78,11 @@ export const Navbar = () => {
             <span className="text-sm font-medium">{item.label}</span>
           </Button>
         ))}
+        <DarkModeToggle />
       </div>
 
       {/* Mobile Navigation - Horizontal icon pill bar */}
-      <div className="flex md:hidden items-center gap-1 p-1.5 bg-white/5 backdrop-blur-xl rounded-full shadow-2xl border border-white/20 shadow-black/5">
+      <div className="flex md:hidden items-center gap-1 p-1.5 dark:bg-white/5 bg-black/5 backdrop-blur-xl rounded-full shadow-2xl border border-border shadow-black/5">
         {navItems.map((item) => (
           <Button
             key={item.id}
@@ -94,6 +96,7 @@ export const Navbar = () => {
             {item.icon("w-[18px] h-[18px]")}
           </Button>
         ))}
+        <DarkModeToggle />
       </div>
     </nav>
   );
