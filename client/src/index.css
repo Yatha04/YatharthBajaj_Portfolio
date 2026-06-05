@@ -5,6 +5,26 @@
 /* Tailwind v4: enable dark: variant via .dark class */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Theme toggle ripple (View Transitions API, driven from DarkModeContext).
+   Disable the default cross-fade so the clip-path wipe reads as a clean edge
+   between the old and new theme snapshots. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Expanding into light, the new (light) snapshot grows from the button and
+   sits above the old one — the browser's default stacking already does this.
+   Collapsing into dark, the old (light) snapshot must instead sit above the
+   new dark page so its shrink toward the button is what's revealed. */
+html.vt-to-dark::view-transition-old(root) {
+  z-index: 1;
+}
+html.vt-to-dark::view-transition-new(root) {
+  z-index: 0;
+}
+
 
 /* Lenis Smooth Scroll */
 html.lenis,
