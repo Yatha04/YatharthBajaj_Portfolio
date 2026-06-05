@@ -43,4 +43,5 @@ bun.lockb
 
 .cursor
 .vercel
-CLAUDE.md
+CLAUDE.md.worktrees
+.env*
