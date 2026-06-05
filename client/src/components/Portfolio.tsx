@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Navbar } from './Navbar'
 import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
@@ -11,11 +10,8 @@ import { AnimatedBackground } from './AnimatedBackground'
 import { useIsMobile } from '../hooks/useIsMobile'
 
 export function Portfolio() {
-  const navigate = useNavigate()
   const isMobile = useIsMobile()
-  const [lastClickTime, setLastClickTime] = useState(0)
   const [showCopied, setShowCopied] = useState(false)
-  const DOUBLE_CLICK_DELAY = 500 // ms
 
   const subtitleWords = ['exploring new places.', 'building.', 'taking pictures.', 'listening to music.', 'playing video games.', 'watching movies and TV shows.', 'playing soccer.']
 
@@ -29,16 +25,6 @@ export function Portfolio() {
     "Other: Agile Methodologies, Data Structures & Algorithms, Object-Oriented Programming"
   ];
 
-  const handleNameClick = () => {
-    const now = Date.now()
-    if (now - lastClickTime < DOUBLE_CLICK_DELAY) {
-      // Double click detected
-      navigate('/videos')
-    } else {
-      setLastClickTime(now)
-    }
-  }
-
   return (
     <div className="pb-20 md:pb-32">
       <AnimatedBackground />
@@ -51,15 +37,13 @@ export function Portfolio() {
             name="Yatharth Bajaj"
             subtitlePrefix="I love "
             subtitleWords={subtitleWords}
-            onClick={handleNameClick}
           />
         ) : (
           <ParticleText
             text="Yatharth Bajaj"
             subtitlePrefix="I love "
             subtitleWords={subtitleWords}
-            className="absolute inset-0 w-full h-full cursor-pointer select-none"
-            onClick={handleNameClick}
+            className="absolute inset-0 w-full h-full select-none"
           />
         )}
       </div>
