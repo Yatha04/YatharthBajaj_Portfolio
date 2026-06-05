@@ -9,9 +9,6 @@
     }
   ],
   "git": {
-    "deploymentEnabled": {
-      "main": false,
-      "master": false
-    }
+    "deploymentEnabled": false
   }
 }
