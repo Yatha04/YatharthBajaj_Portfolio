@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { useDarkMode } from '../context/DarkModeContext';
 
 interface Dot {
   baseX: number;
@@ -18,12 +19,18 @@ const INFLUENCE_RADIUS = 140;
 const LERP_SPEED = 0.08;
 
 export const AnimatedBackground = () => {
+  const { isDarkMode } = useDarkMode();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
+  const isDarkModeRef = useRef(isDarkMode);
   const animFrameRef = useRef<number>(0);
   const columnsRef = useRef(0);
   const rowsRef = useRef(0);
+
+  useEffect(() => {
+    isDarkModeRef.current = isDarkMode;
+  }, [isDarkMode]);
 
   const buildGrid = useCallback(() => {
     const canvas = canvasRef.current;
@@ -126,11 +133,20 @@ export const AnimatedBackground = () => {
 
         if (finalOpacity < 0.005) continue; // skip invisible dots
 
-        // Subtle color shift for dots near mouse
+        // Subtle color shift for dots near mouse, themed by active mode
         const proximity = dist < INFLUENCE_RADIUS ? 1 - dist / INFLUENCE_RADIUS : 0;
-        const r = Math.round(180 + proximity * 75);  // warm shift
-        const g = Math.round(180 + proximity * 40);
-        const b = Math.round(200 + proximity * 55);
+        let r: number, g: number, b: number;
+        if (isDarkModeRef.current) {
+          // Warm-white with warm proximity glow
+          r = Math.round(180 + proximity * 75);
+          g = Math.round(180 + proximity * 40);
+          b = Math.round(200 + proximity * 55);
+        } else {
+          // Near-charcoal with cool dark-blue proximity glow
+          r = Math.round(40 + proximity * 20);
+          g = Math.round(40 + proximity * 15);
+          b = Math.round(60 + proximity * 30);
+        }
 
         ctx.beginPath();
         ctx.arc(dot.baseX, dot.baseY, dot.currentRadius, 0, Math.PI * 2);

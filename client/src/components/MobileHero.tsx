@@ -14,13 +14,13 @@ export function MobileHero({ name, subtitlePrefix, subtitleWords, onClick }: Mob
       onClick={onClick}
     >
       <h1
-        className="text-5xl sm:text-6xl font-bold text-white tracking-tight text-center"
+        className="text-5xl sm:text-6xl font-bold dark:text-white text-gray-900 tracking-tight text-center"
         style={{ fontFamily: '"Geist", sans-serif' }}
       >
         {name}
       </h1>
       <p
-        className="mt-4 text-lg sm:text-xl text-gray-300 text-center"
+        className="mt-4 text-lg sm:text-xl dark:text-gray-300 text-gray-600 text-center"
         style={{ fontFamily: '"Special Elite", sans-serif' }}
       >
         {subtitlePrefix}
