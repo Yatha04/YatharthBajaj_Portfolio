@@ -2,7 +2,6 @@ import { DarkModeProvider } from './context/DarkModeContext'
 import { Routes, Route } from 'react-router-dom'
 import { Portfolio } from './components/Portfolio'
 import { ExploreMore } from './components/ExploreMore'
-import { Videos } from './components/Videos'
 import { HonorsPortfolio } from './components/HonorsPortfolio'
 import { Blog } from './components/Blog'
 import { BlogPost } from './components/BlogPost'
@@ -40,7 +39,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/explore" element={<ExploreMore />} />
-        <Route path="/videos" element={<Videos />} />
         <Route path="/honors" element={<HonorsPortfolio />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
