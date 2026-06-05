@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Navbar } from './Navbar'
+import { BackToTop } from './BackToTop'
 import { Experience } from './Experience'
 import { ProjectsGrid } from './ProjectCarousel'
 import { InteractiveSkills } from './InteractiveSkills'
@@ -43,6 +44,7 @@ export function Portfolio() {
     <div className="pb-20 md:pb-32">
       <AnimatedBackground />
       <Navbar />
+      <BackToTop />
 
       {/* Home Section */}
       <div id="home" className="relative z-10 h-dvh">
