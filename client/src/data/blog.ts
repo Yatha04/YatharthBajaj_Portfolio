@@ -15,7 +15,19 @@ const modules = import.meta.glob('../content/blog/*.md', {
   eager: true,
 }) as Record<string, string>;
 
-export const blogEntries: BlogEntry[] = Object.entries(modules)
+// Pages with their own custom route/component, listed alongside markdown posts.
+const customEntries: BlogEntry[] = [
+  {
+    id: 'how-machines-learn',
+    title: 'How Machines Learn: an interactive field guide',
+    date: 'June 10, 2026',
+    description:
+      'The story of ML from the perceptron to AlexNet — thirteen algorithms, each with interactive visualizations you can poke at.',
+    body: '',
+  },
+];
+
+const markdownEntries: BlogEntry[] = Object.entries(modules)
   .map(([path, raw]) => {
     const slug = path.split('/').pop()!.replace(/\.md$/, '');
     const { meta, body } = parseFrontmatter(raw);
@@ -27,9 +39,12 @@ export const blogEntries: BlogEntry[] = Object.entries(modules)
       body,
       link: meta.link || undefined,
     };
-  })
-  .sort((a, b) => {
+  });
+
+export const blogEntries: BlogEntry[] = [...customEntries, ...markdownEntries].sort(
+  (a, b) => {
     const da = new Date(a.date).getTime();
     const db = new Date(b.date).getTime();
     return (isNaN(db) ? 0 : db) - (isNaN(da) ? 0 : da);
-  });
+  },
+);
