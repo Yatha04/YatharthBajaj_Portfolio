@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, BookOpen, Users, Beaker, GraduationCap, Quote, ChevronDown } from 'lucide-react';
+import { ArrowLeft, BookOpen, Users, Beaker, GraduationCap, Quote, ChevronDown, Sparkles } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { honorsData } from '../data/honors';
+import { LogixLensViz } from './honors/LogixLensViz';
 
-const iconMap: { [key: string]: any } = {
+// Tokens that can appear on their own line in an experience's longDescription
+// get replaced by an interactive component instead of a paragraph.
+const interactiveBlocks: { [token: string]: ReactNode } = {
+    '[[logixlens]]': <LogixLensViz />,
+};
+
+const iconMap: { [key: string]: LucideIcon } = {
     Beaker: Beaker,
     Users: Users,
     BookOpen: BookOpen,
+    Sparkles: Sparkles,
 };
 
 // Animation variants
@@ -290,6 +299,16 @@ export const HonorsPortfolio = () => {
                                             animate={{ opacity: 1 }}
                                             className="flex flex-col lg:flex-row"
                                         >
+                                            {/* Left: image (contain so wide diagrams stay readable) */}
+                                            {exp.image && (
+                                                <div className="lg:w-2/5 lg:shrink-0 bg-muted/30 flex items-start justify-center p-4 lg:rounded-l-3xl">
+                                                    <img
+                                                        src={exp.image}
+                                                        alt={exp.title}
+                                                        className="w-full max-h-72 lg:max-h-[460px] object-contain rounded-xl lg:sticky lg:top-4"
+                                                    />
+                                                </div>
+                                            )}
 
                                             {/* Right: text content */}
                                             <div className="flex-1 p-7 overflow-auto">
@@ -314,9 +333,23 @@ export const HonorsPortfolio = () => {
                                                         transition={{ delay: 0.1 }}
                                                         className="text-muted-foreground text-sm leading-relaxed space-y-4"
                                                     >
-                                                        {exp.longDescription.split('\n\n').map((para, i) => (
-                                                            <p key={i}>{para.trim()}</p>
-                                                        ))}
+                                                        {exp.longDescription.split('\n\n').map((para, i) => {
+                                                            const token = para.trim();
+                                                            if (interactiveBlocks[token]) {
+                                                                return (
+                                                                    // Stop clicks inside the interactive widget from
+                                                                    // bubbling up to the card's collapse handler.
+                                                                    <div
+                                                                        key={i}
+                                                                        className="my-6"
+                                                                        onClick={(e) => e.stopPropagation()}
+                                                                    >
+                                                                        {interactiveBlocks[token]}
+                                                                    </div>
+                                                                );
+                                                            }
+                                                            return <p key={i}>{token}</p>;
+                                                        })}
                                                     </motion.div>
                                                 )}
 

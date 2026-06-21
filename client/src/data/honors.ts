@@ -90,7 +90,31 @@ This year wasn’t just about academics or work — it was about learning how to
         {
             year: "Year 4",
             title: "Fourth Year Experience",
-            content: `Currently in progress!`,
+            content: `I'm not sure how to describe this past one year. I landed back in Cincinnati in the middle of August, coming from an amazing trip in Malaysia. I love to travel, and for some reason I thought Malaysia would be more of a nature-filled trip. Exploring old cities, a lot of hiking, and getting to know a mix of Malay, Chinese, and Indian communities (and the great food all those communities have to offer). And don't get me wrong, it did include all of that, especially the old city of Malacca, a historic city sitting on the Strait of Malacca that's famous for its Dutch colonial architecture and heritage. But landing in Kuala Lumpur was a complete shock. That city is nothing short of New York when it comes to its skyscrapers and fancy architecture.
+
+
+Anyway, back in Cincinnati, I was getting ready to get a head start on the Fall semester, but a really messy breakup shook everything I had planned. Obviously we're not here to talk about a breakup, but it definitely slowed the semester down for me and affected my academics too. One of the outcomes of the whole situation was the time I spent alone just reflecting on the last four years at UC, and I realized that for much of those four years I never really spent time alone. It was always running between classes, clubs, work, friends, sports, or video games.
+
+
+It was like I entered this routine sometime in my first year and just stuck to it. I'm not saying it was a bad routine, but it wasn't the perfect routine either, and I never got the time to stop and figure out what I could change or what was actually better for my future.
+
+
+So after a month or so of doing absolutely nothing, I realized it was time to lock in again and focus on myself. Looking back at it now, maybe it was a blessing in disguise (or maybe I just brainwashed myself into thinking that lol), but I realized the routine I was stuck in wasn't the routine I wanted to live in. So it was time to change things up.
+
+
+It was a slow start with a lot of fallbacks, but I slowly got through the Fall semester. Then I headed back home for winter break, which was much needed because I got to spend time with my family and friends. A little time away from all the chaos really helped my thoughts, or my inner voice, calm down. After that I was off to South Carolina for my fourth co-op, and I was really looking forward to it.
+
+
+I think Spring semester went really well. I switched things up and started my days super early, hitting the gym at 4:30 in the morning with my work bestie, and worked on some really important projects at work. Somewhere in there I realized that even though I genuinely like working as a Controls Engineer, I wanted to try my hand at Machine Learning and AI. So I started studying in the evenings after work and thinking about side projects. That's where I got the idea for LogixLens, a core project of my self-designed Learning Experience that mixes two fields, Manufacturing and AI. Overall it was a really nice semester. I made a lot of new friends, went on a lot of beautiful hikes, and even started a new hobby of becoming a DJ, or at least trying my hand at it.
+
+
+If I'm being honest, the resilience this year didn't come from one big moment where I decided to bounce back. It came from a bunch of small ones. Choosing to get up at 4:30 even when I didn't want to, sitting alone with my own thoughts instead of running from them, picking up a textbook in the evening when it would have been easier to do nothing. What helped me hold the line was the people around me. My family back home gave me space to reset, my work bestie kept me accountable every single morning, and the new friends I made reminded me that starting over isn't the same as falling behind. Going forward, that's what I want to keep leaning on. I know I tend to disappear into routines without questioning them, so my plan is to keep checking in with the people who actually call me out, and to keep building things like LogixLens that pull me toward the future I want instead of the one I drifted into. This year I learned that being alone for a while isn't the same as being lost. Sometimes it's just the quiet you need before you figure out which direction to walk in next.`,
+            images: [
+                "/year4-01.svg", // Malaysia / Malacca — replace with a real photo
+                "/year4-02.svg", // Kuala Lumpur skyline — replace with a real photo
+                "/year4-03.svg", // South Carolina co-op — replace with a real photo
+                "/year4-04.svg"  // hikes / DJ / new friends — replace with a real photo
+            ]
         }
     ] as YearReview[],
 
@@ -146,6 +170,30 @@ Perhaps the most enlightening part of my experience was realizing that each stud
 Peer tutoring has been a really rewarding experience for me. Through it, I enriched the educational experience of other people while also enriching my own understanding of diverse academic fields. It is an experience I will cherish as part of my time at university.`,
             image: "/honors-tutor.png",
             icon: "BookOpen"
+        },
+        {
+            title: "Learning Out Loud: My Journey into AI",
+            role: "Self-Designed Honors Experience",
+            description: "A 15-week self-designed experience where I taught myself machine learning from the perceptron up, then turned that foundation into two real-world AI tools — LogixLens and a set of agents for a construction startup.",
+            longDescription: `When I started this self-designed experience back in October, my plan was simple on paper. I would spend fifteen weeks building two AI projects, one based on classification and one using recommender systems or NLP. My goals were to get better at the technical side of machine learning, to get better at explaining hard ideas in plain language, and maybe to push a few other people to give AI a try. Looking back now that it is March, I did all of that, but the road there looked pretty different from what I drew up at the start.
+
+I began with the fundamentals. I read through How Machines Learn and worked my way up from the perceptron, which is the most basic building block of a neural network, all the way to Convolutional Neural Networks. Going slowly like this mattered. Instead of copying code I did not really understand, I learned why a perceptron makes the decisions it does, how layers stack on top of each other, and how a CNN actually sees an image. It was slow and honestly a little frustrating at times, but it gave me a base I kept leaning on for the rest of the experience.
+
+From there my projects took shape, and this is where my goals shifted. My first real build was LogixLens, a tool that lets large language models query over PLC code, which is the code that runs industrial machines and controllers. I had planned for a clean, textbook classification project, but the more I worked, the more I got pulled toward problems that people actually had in front of them. PLC code is hard to read and there is not much tooling around it, so building something that could read it and answer questions about it felt useful in a way a practice project never would. That changed how I thought about the whole experience. I stopped chasing the assignment and started chasing real problems.
+
+[[logixlens]]
+
+The interactive diagram above is the simplest way I can explain what LogixLens does — go ahead and ask it a question. Out on a factory floor, machines are run by PLCs, which are small controllers programmed in code that almost nobody except a trained engineer can read. That is the bottleneck, because when something goes wrong the people on the line have to wait for an expert to come read the logic. LogixLens reads and indexes that code first, then hands it to a large language model that can answer questions about it in plain language. The payoff is at the end of the chain: a line operator can ask what a machine is doing or why it stopped and get a clear answer, without ever touching the raw PLC code. Building this taught me that the hardest part of an AI tool is often not the model itself but getting messy, real world data into a shape the model can actually use.
+
+That led straight into my second focus, which was building AI agents for the construction business. This part came from a bit of luck. We had a guest lecturer in my microeconomics class who was an entrepreneur building a new startup with AI, and after class I talked to him about what I had been working on. One thing led to another and I ended up doing a project for him, building agents to help with his construction business. It worked out for both of us. He got a tool he needed and I got a real client with real problems instead of a made up assignment. This was the toughest part of the whole experience and also the most fun. I had to take everything I learned about models and language and make it work in a messy, real world setting, where the data is not clean and where people need answers they can actually trust. There were plenty of nights where things broke and I had no idea why, but figuring it out piece by piece was the best feeling. Forcing myself to slow down and explain out loud what I was doing is when I realized how much better I understood something once I could teach it to someone else.
+
+What I learned ended up being bigger than any single model or project. I learned how to learn a hard subject on my own, how to push through the boring and confusing parts, and how to turn rough ideas into things that actually run. I also learned how to talk about technical work without hiding behind jargon, which is a skill I did not expect to grow this much. The mix of being stuck and then finally getting something to work is what made the whole thing fun, even when it was hard.
+
+This experience shaped how I see being a Global Citizen Scholar. To me it means using what you know to solve real problems for real people, not just for a grade, and then sharing what you learn so others can do the same. AI is going to touch almost every field and almost every job, and a lot of people feel nervous about it. I want to help people use it well and feel less afraid of it, whether that is a worker on a job site or a student who thinks this stuff is out of reach. Explaining what I built in plain language was a small version of that, and it pushed me to make hard ideas feel simple.
+
+Going forward, I want to keep this momentum. In the classroom I will keep picking projects that are tied to real problems instead of ones that just check a box, because that is what kept me motivated this time. In my career I want to keep building tools like LogixLens and the construction agents, the kind of tools that make hard, technical work a little easier for the people who do it every day. And on a personal level, I want to keep teaching what I learn, because explaining something out loud is still the best way I know to find out whether I really understand it. This experience did not just teach me machine learning. It taught me how I like to work, and that is something I will carry into whatever I do next.`,
+            image: "/honors-learning-out-loud.svg",
+            icon: "Sparkles"
         }
     ] as HonorsExperience[]
 };
