@@ -208,19 +208,34 @@ export const HonorsPortfolio = () => {
                                                             </div>
                                                             {year.images && year.images.length > 0 && (
                                                                 <div className="flex flex-col gap-3">
-                                                                    {year.images.map((img, imgIndex) => (
-                                                                        <motion.div
-                                                                            key={imgIndex}
-                                                                            whileHover={{ scale: 1.03, rotate: imgIndex % 2 === 0 ? 1 : -1 }}
-                                                                            className="rounded-xl overflow-hidden shadow-md aspect-video"
-                                                                        >
-                                                                            <img
-                                                                                src={img}
-                                                                                alt={`${year.year} highlight ${imgIndex + 1}`}
-                                                                                className="w-full h-full object-cover"
-                                                                            />
-                                                                        </motion.div>
-                                                                    ))}
+                                                                    {year.images.map((img, imgIndex) => {
+                                                                        const isVideo = /\.(mov|mp4|webm)$/i.test(img);
+                                                                        return (
+                                                                            <motion.div
+                                                                                key={imgIndex}
+                                                                                whileHover={{ scale: 1.03, rotate: imgIndex % 2 === 0 ? 1 : -1 }}
+                                                                                className="rounded-xl overflow-hidden shadow-md aspect-[3/4] bg-muted"
+                                                                            >
+                                                                                {isVideo ? (
+                                                                                    <video
+                                                                                        src={img}
+                                                                                        className="w-full h-full object-cover"
+                                                                                        autoPlay
+                                                                                        muted
+                                                                                        loop
+                                                                                        playsInline
+                                                                                        controls
+                                                                                    />
+                                                                                ) : (
+                                                                                    <img
+                                                                                        src={img}
+                                                                                        alt={`${year.year} highlight ${imgIndex + 1}`}
+                                                                                        className="w-full h-full object-cover"
+                                                                                    />
+                                                                                )}
+                                                                            </motion.div>
+                                                                        );
+                                                                    })}
                                                                 </div>
                                                             )}
                                                         </div>

@@ -110,10 +110,10 @@ I think Spring semester went really well. I switched things up and started my da
 
 If I'm being honest, the resilience this year didn't come from one big moment where I decided to bounce back. It came from a bunch of small ones. Choosing to get up at 4:30 even when I didn't want to, sitting alone with my own thoughts instead of running from them, picking up a textbook in the evening when it would have been easier to do nothing. What helped me hold the line was the people around me. My family back home gave me space to reset, my work bestie kept me accountable every single morning, and the new friends I made reminded me that starting over isn't the same as falling behind. Going forward, that's what I want to keep leaning on. I know I tend to disappear into routines without questioning them, so my plan is to keep checking in with the people who actually call me out, and to keep building things like LogixLens that pull me toward the future I want instead of the one I drifted into. This year I learned that being alone for a while isn't the same as being lost. Sometimes it's just the quiet you need before you figure out which direction to walk in next.`,
             images: [
-                "/year4-01.svg", // Malaysia / Malacca — replace with a real photo
-                "/year4-02.svg", // Kuala Lumpur skyline — replace with a real photo
-                "/year4-03.svg", // South Carolina co-op — replace with a real photo
-                "/year4-04.svg"  // hikes / DJ / new friends — replace with a real photo
+                "/year4-01.png", // Malaysia / Malacca
+                "/year4-02.png", // Kuala Lumpur skyline
+                "/year4-03.mp4", // South Carolina co-op
+                "/year4-04.png"  // hikes / DJ / new friends
             ]
         }
     ] as YearReview[],
