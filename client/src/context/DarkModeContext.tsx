@@ -50,6 +50,21 @@ function coverRadius(x: number, y: number) {
   return Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 }
 
+// Everything is expressed as a percentage of the pseudo-element's own box
+// rather than in px. The snapshot is not always laid out in CSS pixels — on a
+// HiDPI screen it can be sized in device pixels, which drags a px-based centre
+// to half its intended position (a bottom-right button ripples from the middle
+// left). Percentages resolve against whatever box the browser used, so the
+// circle stays pinned to the button either way.
+function circleAt(origin: RippleOrigin, radius: number) {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  // A percentage <shape-radius> resolves against sqrt(w² + h²) / sqrt(2).
+  const reference = Math.hypot(w, h) / Math.SQRT2;
+  const pct = (n: number) => `${n * 100}%`;
+  return `circle(${pct(radius / reference)} at ${pct(origin.x / w)} ${pct(origin.y / h)})`;
+}
+
 export const DarkModeProvider: React.FC<DarkModeProviderProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     return localStorage.getItem('theme') !== 'light';
@@ -92,9 +107,8 @@ export const DarkModeProvider: React.FC<DarkModeProviderProps> = ({ children }) 
     const transition = doc.startViewTransition(swap);
 
     transition.ready.then(() => {
-      const radius = coverRadius(origin.x, origin.y);
-      const atOrigin = `circle(0px at ${origin.x}px ${origin.y}px)`;
-      const covering = `circle(${radius}px at ${origin.x}px ${origin.y}px)`;
+      const atOrigin = circleAt(origin, 0);
+      const covering = circleAt(origin, coverRadius(origin.x, origin.y));
 
       if (nextIsDark) {
         // Collapse: the outgoing light snapshot shrinks from full screen back
