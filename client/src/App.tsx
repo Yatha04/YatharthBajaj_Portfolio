@@ -5,6 +5,7 @@ import { ExploreMore } from './components/ExploreMore'
 import { HonorsPortfolio } from './components/HonorsPortfolio'
 import { Blog } from './components/Blog'
 import { BlogPost } from './components/BlogPost'
+import { HowMachinesLearn } from './components/HowMachinesLearn'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/explore" element={<ExploreMore />} />
         <Route path="/honors" element={<HonorsPortfolio />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/how-machines-learn" element={<HowMachinesLearn />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="*" element={<Portfolio />} />
       </Routes>
